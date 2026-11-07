@@ -39,7 +39,7 @@ a{color:inherit;text-decoration:none}
 #pre{position:fixed;inset:0;z-index:300;background:var(--blanco);display:grid;place-items:center;transition:clip-path 1s cubic-bezier(.77,0,.18,1);clip-path:circle(150% at 50% 50%)}
 #pre.fuera{clip-path:circle(0% at 50% 50%)}
 #pre .logo-pre{width:min(300px,64vw);animation:revela 1.5s cubic-bezier(.5,0,.2,1) both}
-@keyframes revela{0%{clip-path:circle(0% at 54% 27%);transform:scale(.92);opacity:.3}60%{opacity:1}100%{clip-path:circle(80% at 54% 27%);transform:none}}
+@keyframes revela{0%{clip-path:circle(0% at 54% 27%);transform:scale(.92);opacity:.3}55%{opacity:1;clip-path:circle(70% at 54% 27%)}100%{clip-path:circle(150% at 54% 27%);transform:none}}
 
 /* ---------- cursor + huellitas ---------- */
 .paso-cursor{position:fixed;width:20px;height:27px;pointer-events:none;z-index:150;color:var(--celeste);opacity:.8;transition:opacity 1.6s ease,transform 1.6s ease;animation:pisa .3s ease-out;filter:drop-shadow(0 1px 1px rgba(22,34,43,.15))}
