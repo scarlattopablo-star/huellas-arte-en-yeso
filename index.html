@@ -255,7 +255,7 @@ header>*{pointer-events:auto}
 .vista:not([data-vista="inicio"])>section:first-child{padding-top:130px}
 .pill a.activo{background:#fff;color:var(--tinta)}
 .esc-sec .escul{margin-top:0}
-.horiz{height:300vh}
+.horiz{height:420vh}
 .accesos{padding:90px 0 120px}
 .accesos h2{font-size:clamp(2.6rem,6.4vw,6rem);font-weight:800;letter-spacing:-.05em;line-height:.88;margin:16px 0 44px}
 .tiles{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-auto-rows:280px;gap:16px}
@@ -307,6 +307,57 @@ header>*{pointer-events:auto}
   .np-volver{justify-content:center;padding:.9rem}
   .np-sig{max-width:none}
 }
+
+
+/* ---------- mascotas ---------- */
+.mascotas{margin-top:22px;border-radius:32px;background:var(--celeste-pastel);padding:clamp(26px,4vw,48px);display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,52px);align-items:center}
+.mascotas h3{font-size:clamp(2.4rem,4.6vw,4rem);font-weight:800;letter-spacing:-.05em;line-height:.9;margin:12px 0 16px}
+.mascotas p{color:var(--tinta-2);font-size:1.08rem;line-height:1.5;max-width:38ch;margin-bottom:24px}
+.mascotas .btn{font-size:1rem;padding:1rem 1.4rem}
+.masc-fotos{display:grid;grid-template-columns:1.1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;height:560px}
+.masc-fotos figure{border-radius:22px;overflow:hidden;position:relative}
+.masc-fotos figure:first-child{grid-row:span 2}
+.masc-fotos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.masc-fotos figure:hover img{transform:scale(1.06)}
+.masc-fotos figcaption{position:absolute;left:12px;bottom:12px;background:rgba(255,253,249,.94);padding:.35rem .8rem;border-radius:999px;font-size:.8rem;font-weight:700}
+.patitas{display:inline-flex;gap:6px;margin-left:8px;vertical-align:middle}
+.patitas svg{width:16px;height:21px;color:var(--celeste-hondo);animation:patea 1.6s ease-in-out infinite}
+.patitas svg:nth-child(2){animation-delay:.4s;transform:translateY(-6px)}
+@keyframes patea{50%{opacity:.25}}
+@media(max-width:860px){.mascotas{grid-template-columns:1fr}.masc-fotos{height:440px}}
+
+
+.tam{display:inline-flex;background:#fff;border:2px solid var(--tinta);border-radius:999px;padding:4px;margin:4px 0 14px}
+.tam button{font:inherit;font-weight:700;font-size:.92rem;border:0;background:none;padding:.55rem 1rem;border-radius:999px;cursor:pointer;color:var(--tinta);transition:background .3s,color .3s}
+.tam button[aria-selected="true"]{background:var(--tinta);color:#fff}
+.precios-m{display:flex;flex-direction:column;margin-bottom:12px}
+.fila-m{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 4px;border-top:1.5px solid rgba(22,34,43,.15);font-weight:500;transition:padding .3s cubic-bezier(.2,.8,.2,1)}
+.fila-m:last-child{border-bottom:1.5px solid rgba(22,34,43,.15)}
+.fila-m small{display:block;color:var(--tinta-2);font-size:.82rem;font-weight:500}
+.fila-m .pm{font-weight:800;font-size:1.6rem;letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap;display:inline-block}
+.fila-m .pm small{display:inline;font-size:.5em;vertical-align:.7em;color:inherit}
+.fila-m .pm.salta{animation:salta .5s cubic-bezier(.3,1.6,.5,1)}
+.fila-m:hover{padding-left:12px;color:var(--celeste-hondo)}
+.mejor-amigo{font-family:"Caveat";font-size:1.5rem;color:var(--tinta-2);margin-top:6px}
+/* huella box */
+.hbox{margin-top:26px;border-radius:32px;background:linear-gradient(135deg,#E9D3AE,#D7B583);color:#3a2810;padding:clamp(26px,4vw,46px);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,48px);align-items:center;position:relative;overflow:hidden}
+.hbox::before{content:"";position:absolute;inset:12px;border:2px dashed rgba(58,40,16,.3);border-radius:24px;pointer-events:none}
+.caja{width:150px;height:150px;position:relative;transform:rotate(-8deg);animation:flotaCaja 4s ease-in-out infinite}
+.caja .c-cuerpo{position:absolute;inset:34px 8px 0;background:#B98A4E;border-radius:10px;box-shadow:inset 0 -10px 0 rgba(0,0,0,.08),0 16px 26px -12px rgba(58,40,16,.6)}
+.caja .c-tapa{position:absolute;left:0;right:0;top:14px;height:34px;background:#C99A5C;border-radius:10px;transform-origin:left bottom;animation:abre 4s ease-in-out infinite}
+.caja .c-cinta{position:absolute;left:50%;top:14px;bottom:0;width:20px;margin-left:-10px;background:var(--celeste);opacity:.9}
+.caja .c-cora{position:absolute;left:50%;top:70px;width:56px;height:50px;margin-left:-28px;background:#fff;-webkit-mask:url(img/corazon-blanco.png) center/contain no-repeat;mask:url(img/corazon-blanco.png) center/contain no-repeat}
+@keyframes flotaCaja{50%{transform:rotate(-4deg) translateY(-8px)}}
+@keyframes abre{0%,60%,100%{transform:none}75%,90%{transform:rotate(-22deg)}}
+.hbox h3{font-size:clamp(2.2rem,4.4vw,3.6rem);font-weight:800;letter-spacing:-.05em;line-height:.9;margin:10px 0 12px}
+.hbox p{font-size:1.05rem;line-height:1.45;max-width:44ch;color:#5b4423}
+.hbox ul{list-style:none;margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.hbox li{background:rgba(255,255,255,.5);padding:.35rem .8rem;border-radius:999px;font-size:.88rem;font-weight:700}
+.hbox .lado{text-align:right;position:relative}
+.hbox .precio{color:#3a2810}
+.hbox label{display:flex;align-items:center;justify-content:flex-end;gap:8px;font-weight:700;font-size:.92rem;margin:10px 0 16px;cursor:pointer}
+.hbox input{width:20px;height:20px;accent-color:var(--tinta)}
+@media(max-width:900px){.hbox{grid-template-columns:1fr}.caja{margin:0 auto}.hbox .lado{text-align:left}.hbox label{justify-content:flex-start}}
 
 /* ---------- para quién ---------- */
 .quien{padding:140px 0 120px}
@@ -476,9 +527,9 @@ header>*{pointer-events:auto}
     <h2 class="sube">¿Qué querés <span class="serif">ver?</span></h2>
     <div class="tiles">
       <a class="tile t-cuadros sube" href="#/cuadros"><img src="img/cat/francisco.jpg" alt="" loading="lazy"><span class="n">01</span><span class="tx"><em>desde $3.450</em><b>Cuadros personalizados</b><small>Manitos y piecitos con nombre y foto, precio según la edad</small></span><i>→</i></a>
-      <a class="tile sube" href="#/esculturas"><img src="img/cat/esc-familia-oro.jpg" alt="" loading="lazy"><span class="n">02</span><span class="tx"><em>desde $4.500</em><b>Esculturas 3D</b><small>Manos de la familia y tu oficio en yeso</small></span><i>→</i></a>
+      <a class="tile sube" href="#/esculturas"><img src="img/cat/esc-familia-oro.jpg" alt="" loading="lazy"><span class="n">02</span><span class="tx"><em>desde $4.500</em><b>Esculturas 3D</b><small>Familia, mascotas y tu oficio en yeso</small></span><i>→</i></a>
       <a class="tile sube" href="#/trabajos"><img src="img/hero-mama.jpg" alt="" loading="lazy"><span class="n">03</span><span class="tx"><b>Trabajos reales</b><small>Familias que ya guardaron su huella</small></span><i>→</i></a>
-      <a class="tile sube" href="#/como"><img src="img/cat/taller-retoque-mano.jpg" alt="" loading="lazy"><span class="n">04</span><span class="tx"><b>Cómo es</b><small>Toma de 15 min, listo en 1 semana y preguntas</small></span><i>→</i></a>
+      <a class="tile sube" href="#/como"><img src="img/cat/taller-moldeando.jpg" alt="" loading="lazy"><span class="n">04</span><span class="tx"><b>Cómo es</b><small>Toma de 15 min, listo en 1 semana y preguntas</small></span><i>→</i></a>
       <a class="tile t-arma sube" href="#/arma"><span class="n">05</span><span class="tx"><b>Armá el tuyo</b><small>Probá tu cuadro en 10 segundos</small></span><i>→</i></a>
       <a class="tile t-tathi sube" href="#/tathiana"><img src="img/cat/taller-retoque-bebe.jpg" alt="" loading="lazy"><span class="n">06</span><span class="tx"><b>Conocé a Tathiana</b><small>Cada pieza, hecha y retocada a mano</small></span><i>→</i></a>
     </div>
@@ -530,8 +581,9 @@ header>*{pointer-events:auto}
       </article>
 
       <article class="prod sube" data-k="1">
-        <div class="slides"><span class="etq">Paulina · piezas en blanco</span>
+        <div class="slides"><span class="etq">Paulina · Olivia</span>
           <img src="img/cat/paulina.jpg" alt="Cuadro de Paulina con piecito y manito dorados y un osito" loading="lazy">
+          <img src="img/cat/olivia-lino.jpg" alt="Cuadro de lino de Olivia con dos piecitos dorados y una pluma" loading="lazy">
           <img src="img/cat/punitos-blanco.jpg" alt="Dos puñitos de bebé en yeso blanco" loading="lazy">
           <img src="img/cat/pie-puno-blanco.jpg" alt="Piecito y puñito de bebé en yeso blanco" loading="lazy">
         </div>
@@ -550,9 +602,11 @@ header>*{pointer-events:auto}
 
       <article class="prod estrella sube" data-k="3">
         <div class="fuego"><div><span>🔥</span>El más<br>elegido</div></div>
-        <div class="slides"><span class="etq">Francisco · Tomás</span>
+        <div class="slides"><span class="etq">Francisco · Tomás · Olivia</span>
           <img src="img/cat/francisco.jpg" alt="Cuadro de Francisco con dos manitos, dos piecitos en yeso blanco y foto" loading="lazy">
           <img src="img/cat/tomas.jpg" alt="Cuadro de Tomás con dos puñitos, dos piecitos dorados y dos fotos" loading="lazy">
+          <img src="img/cat/olivia-cobre.jpg" alt="Cuadro de Olivia en cobre con cuatro piezas y dos fotos" loading="lazy">
+          <img src="img/cat/olivia-dorado.jpg" alt="Cuadro de Olivia con puñitos y piecitos dorados y foto" loading="lazy">
         </div>
         <div class="info"><span class="kicker" style="color:var(--oro)">El cuadro completo</span><h3 data-t>4 piezas + foto</h3><p class="sub" data-s></p>
           <div class="fila"><span class="precio"><small>$</small><b data-p>0</b></span><a class="lo-quiero" data-wa href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Lo quiero</a></div></div>
@@ -571,6 +625,21 @@ header>*{pointer-events:auto}
       </article>
     </div>
 
+    <div class="hbox sube" id="huellabox">
+      <div class="caja" aria-hidden="true"><span class="c-cuerpo"></span><span class="c-cinta"></span><span class="c-tapa"></span><span class="c-cora"></span></div>
+      <div>
+        <span class="kicker" style="color:#7a5420">📦 Hacelo en casa</span>
+        <h3>Huella Box</h3>
+        <p>Incluye todo lo necesario para crear las huellas en casa. Para vivir el momento y crear juntos, con tus propias manos.</p>
+        <ul><li>👶 Rinde hasta 4 piezas de bebé</li><li>🏡 Ideal si estás lejos del salón</li></ul>
+      </div>
+      <div class="lado">
+        <span class="precio"><small>$</small><b id="hb-precio">3.550</b></span>
+        <label><input type="checkbox" id="hb-marco"> + marco con nombre pronto ($700)</label>
+        <a class="btn btn-negro" id="wa-hbox" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Quiero mi Huella Box</a>
+      </div>
+    </div>
+
     <div class="extras">
       <div class="extra sube"><b>⏱</b><strong>Toma de 15–20 min</strong><p>Rápida, sencilla y segura.</p></div>
       <div class="extra sube"><b>📅</b><strong>Listo en ~1 semana</strong><p>Aproximadamente 5 días o una semana.</p></div>
@@ -578,7 +647,7 @@ header>*{pointer-events:auto}
       <div class="extra sube"><b>🎨</b><strong>Todo personalizado</strong><p>Nombre, colores, marco, accesorios y diseño.</p></div>
       <div class="extra sube"><b>🛡</b><strong>Materiales seguros</strong><p>Profesionales y de alta calidad.</p></div>
     </div>
-    <p class="nota-cat">Precios en pesos uruguayos. ¿Mascotas? <a href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20consultar%20precio%20para%20mascotas%20%F0%9F%A4%8D" target="_blank" rel="noopener">Consultanos el precio por WhatsApp</a>.</p>
+    <p class="nota-cat">Precios en pesos uruguayos. ¿Mascotas? <a href="#mascotas">Mirá sus precios acá</a>.</p>
   </div>
 </section>
 <nav class="navpie"><div class="wrap">
@@ -599,6 +668,9 @@ header>*{pointer-events:auto}
         <img src="img/cat/esc-mano-pie-madera.jpg" alt="Mano adulta dorada sosteniendo un piecito sobre base de madera" data-cap="Adulto + bebé" loading="lazy">
         <img src="img/cat/esc-adulto-nino.jpg" alt="Escultura blanca de una mano adulta tomando la mano de un niño" data-cap="Adulto + niño" loading="lazy">
         <img src="img/cat/esc-pareja-anillo2.jpg" alt="Escultura blanca de dos manos adultas entrelazadas con anillo" data-cap="2 manos adultas" loading="lazy">
+        <img src="img/cat/esc-adulto-bebe-oro.jpg" alt="Escultura dorada de mano adulta envolviendo la manito de un bebé" data-cap="Adulto + bebé" loading="lazy">
+        <img src="img/cat/esc-adulto-nino-oro.jpg" alt="Escultura dorada de mano adulta tomando la mano de un niño" data-cap="Adulto + niño" loading="lazy">
+        <img src="img/cat/esc-pareja-oro.jpg" alt="Escultura dorada de dos manos adultas entrelazadas con anillo" data-cap="2 manos adultas" loading="lazy">
         <span class="cap" id="visor-cap">Adulto + bebé</span>
       </div>
       <div class="lista">
@@ -630,6 +702,27 @@ header>*{pointer-events:auto}
         <figure><img src="img/cat/oficio-microfono-mar.jpg" alt="Mano dorada con micrófono frente al mar" loading="lazy"></figure>
       </div>
     </div>
+    <div class="mascotas sube" id="mascotas">
+      <div class="masc-fotos">
+        <figure><img src="img/cat/masc-marco-negro2.jpg" alt="Marco negro con una mano y la patita de un perro en yeso dorado" loading="lazy"><figcaption>Vos y él</figcaption></figure>
+        <figure><img src="img/cat/masc-sora.jpg" alt="Cuadro de lino con la patita dorada de Sora" loading="lazy"><figcaption>Sora 🐾</figcaption></figure>
+        <figure><img src="img/cat/masc-chica-bulldog.jpg" alt="Clienta con su bulldog francés y el marco con mano y patita doradas" loading="lazy"></figure>
+      </div>
+      <div>
+        <span class="kicker" style="color:var(--celeste-hondo)">Mascotas<span class="patitas"><svg viewBox="0 0 22 30"><use href="#pie"/></svg><svg viewBox="0 0 22 30"><use href="#pie"/></svg></span></span>
+        <h3>Su patita,<br><span class="serif" style="color:var(--celeste-hondo)">para siempre.</span></h3>
+        <p>La huella de tu compañero de cuatro patas en yeso: en un cuadro con su nombre y un accesorio (también podés sumar su foto), o junto a tu mano en un cubo. Vos y él, en una sola pieza.</p>
+        <div class="tam" role="tablist" id="tam">
+          <button role="tab" aria-selected="true" data-i="0">Chico</button><button role="tab" aria-selected="false" data-i="1">Mediano</button><button role="tab" aria-selected="false" data-i="2">Grande</button>
+        </div>
+        <div class="precios-m">
+          <a class="fila-m" data-k="0" target="_blank" rel="noopener"><span>Cuadro · 1 patita<small>con nombre y accesorio</small></span><span class="pm"><small>$</small><b>3.450</b></span></a>
+          <a class="fila-m" data-k="1" target="_blank" rel="noopener"><span>Cuadro · 2 patitas<small>con nombre y accesorio</small></span><span class="pm"><small>$</small><b>3.750</b></span></a>
+          <a class="fila-m" data-k="2" target="_blank" rel="noopener"><span>Cubo · patita + tu mano<small>vos y él, frente a frente</small></span><span class="pm"><small>$</small><b>6.300</b></span></a>
+        </div>
+        <p class="mejor-amigo">💛 Un recuerdo para siempre de tu mejor amigo.</p>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -644,7 +737,7 @@ header>*{pointer-events:auto}
   <div class="pin">
     <div class="titulo">
       <h2>Ya guardaron<br><span class="serif">su huella</span></h2>
-      <span class="contador" id="cont">01 / 06</span>
+      <span class="contador" id="cont">01 / 10</span>
     </div>
     <div class="track" id="track">
       <figure class="pieza-g"><div class="foto"><img src="img/hero-mama.jpg" alt="Mamá con su bebé y el cuadro de Isabella"></div><figcaption class="nota">Isabella 🤍</figcaption></figure>
@@ -652,6 +745,10 @@ header>*{pointer-events:auto}
       <figure class="pieza-g"><div class="foto"><img src="img/p1.jpg" alt="Bebé sonriendo con su cuadro"></div><figcaption class="nota">Fausto aprobó ✓</figcaption></figure>
       <figure class="pieza-g"><div class="foto"><img src="img/p2.jpg" alt="Cuadro blanco de Francisco"></div><figcaption class="nota">blanco yeso natural</figcaption></figure>
       <figure class="pieza-g"><div class="foto"><img src="img/p4.jpg" alt="Cuadro de Vito frente a la ventana"></div><figcaption class="nota">Vito, con vista</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img src="img/cat/familia-7-manos.jpg" alt="Cuadro alargado con siete manos doradas de toda la familia"></div><figcaption class="nota">toda la familia, de mayor a menor</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img src="img/cat/fausti.jpg" alt="Manito dorada de Fausti frente a su cuadro"></div><figcaption class="nota">la manito de Fausti</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img src="img/cat/emilia.jpg" alt="Puñito dorado de Emilia antes de ir al cuadro"></div><figcaption class="nota">Emilia, casi lista</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img src="img/cat/mano-anillo-oro.jpg" alt="Mano adulta dorada con anillo de sello"></div><figcaption class="nota">hasta el anillo ✦</figcaption></figure>
       <a class="pieza-g final" href="https://www.instagram.com/huellas.arte.en.yeso/" target="_blank" rel="noopener"><div><b>¿El próximo es el tuyo?</b>Ver más en Instagram →</div></a>
     </div>
   </div>
@@ -666,7 +763,7 @@ header>*{pointer-events:auto}
       <article class="tj t1 sube"><span class="num">01</span><span class="emoji">👶</span><div><h3>Bebés y niños</h3><p>Manito y piecito, con sus pliegues y huellitas, en una etapa que pasa volando.</p></div></article>
       <article class="tj t2 sube"><span class="num">02</span><span class="emoji">🤝</span><div><h3>Parejas y familia</h3><p>Padres, abuelos, hermanos o amigos de toda la vida, de la mano para siempre.</p></div></article>
       <article class="tj t3 sube"><span class="num">03</span><span class="emoji">🐾</span><div><h3>Mascotas</h3><p>Las huellitas de tu compañero de cuatro patas, en yeso.</p></div></article>
-      <article class="tj t4 sube"><span class="num">04</span><span class="emoji">🎨</span><div><h3>Kit artístico</h3><p>Una propuesta para crear en casa. Consultanos qué incluye.</p></div></article>
+      <article class="tj t4 sube"><span class="num">04</span><span class="emoji">📦</span><div><h3>Huella Box</h3><p>Hacelo en casa: rinde hasta 4 piezas de bebé. $3.550.</p></div></article>
     </div>
   </div>
 </section>
@@ -719,10 +816,11 @@ header>*{pointer-events:auto}
   <div class="wrap">
     <h2 class="sube">Preguntas<br><span class="serif">frecuentes</span></h2>
     <details><summary>¿Dónde se hace la sesión? <i>+</i></summary><p>En nuestro salón de Punta Carretas, o vamos a tu casa si estás en una zona cercana (con costo adicional). También trabajamos en Maldonado.</p></details>
-    <details><summary>¿Hacen huellas de mascotas? <i>+</i></summary><p>¡Sí! Bebés, niños, parejas, familias y también las huellitas de tu mascota.</p></details>
+    <details><summary>¿Hacen huellas de mascotas? <i>+</i></summary><p>¡Sí! Cuadro con su patita, nombre y accesorio desde $3.450, o el cubo con su patita y tu mano desde $6.300. <a href="#mascotas" style="text-decoration:underline">Ver todos los precios</a>.</p></details>
     <details><summary>¿Qué terminaciones hay? <i>+</i></summary><p>Blanco yeso natural, dorado y bronce. Podés sumar su nombre en letras y una foto dentro del cuadro.</p></details>
     <details><summary>¿Cuánto cuesta? <i>+</i></summary><p>Desde $3.450 una pieza para bebés de 0 a 11 meses. El precio depende de la edad y de cuántas piezas lleva el cuadro: <a href="#precios" style="text-decoration:underline">mirá el catálogo completo</a>. El cuadro para hermanos tiene precio único de $5.590 y las esculturas de manos en familia van desde $4.500.</p></details>
     <details><summary>¿Pueden hacer la mano con un objeto? <i>+</i></summary><p>Sí: una tijera, un micrófono o lo que represente tu oficio o tu pasión. Escribinos por WhatsApp y te pasamos el precio.</p></details>
+    <details><summary>¿Y si vivo lejos del salón? <i>+</i></summary><p>Tenés la Huella Box: incluye todo para hacer las huellas en casa y rinde hasta 4 piezas de bebé ($3.550). Si querés, te mandamos también el marco con el nombre pronto por $700 más.</p></details>
     <details><summary>¿Cuánto dura la toma? <i>+</i></summary><p>Entre 15 y 20 minutos. Es rápida, sencilla y segura, con materiales profesionales.</p></details>
     <details><summary>¿Cuándo está listo el cuadro? <i>+</i></summary><p>En aproximadamente 5 días o una semana.</p></details>
     <details><summary>¿Tengo que decidir el diseño antes? <i>+</i></summary><p>No. El día de la toma te mostramos todas las opciones para que elijas lo que más te guste: nombre, colores, marco, accesorios y diseño.</p></details>
@@ -997,6 +1095,29 @@ document.querySelectorAll('.fila-e').forEach(a => {
   a.addEventListener('mouseleave', () => vPausa = false); a.addEventListener('blur', () => vPausa = false);
 });
 
+/* mascotas por tamaño */
+const MASC = { tam: ['chico', 'mediano', 'grande'], precios: [[3450, 3750, 6300], [3650, 3950, 6600], [3850, 4150, 6900]], nombres: ['cuadro con 1 patita', 'cuadro con 2 patitas', 'cubo con patita + mano'] };
+function elegirTam(i) {
+  document.querySelectorAll('#tam button').forEach(b => b.setAttribute('aria-selected', +b.dataset.i === i));
+  document.querySelectorAll('.fila-m').forEach(a => {
+    const k = +a.dataset.k, p = MASC.precios[i][k], el = a.querySelector('.pm b'), pm = a.querySelector('.pm');
+    el.textContent = fmtP.format(p); pm.classList.remove('salta'); void pm.offsetWidth; if (!calmo) pm.classList.add('salta');
+    a.href = WA + encodeURIComponent(`Hola Huellas! 🐾 Me interesa el ${MASC.nombres[k]} tamaño ${MASC.tam[i]} — $${fmtP.format(p)}. ¿Qué días tenés disponibles?`);
+  });
+}
+document.getElementById('tam').addEventListener('click', e => { const b = e.target.closest('button'); if (b) elegirTam(+b.dataset.i); });
+elegirTam(0);
+
+/* huella box */
+const hbMarco = document.getElementById('hb-marco'), hbPrecio = document.getElementById('hb-precio'), hbWa = document.getElementById('wa-hbox');
+function huellaBox() {
+  const total = 3550 + (hbMarco.checked ? 700 : 0);
+  contarPrecio(hbPrecio, total);
+  hbWa.href = WA + encodeURIComponent(`Hola Huellas! 📦 Quiero la Huella Box${hbMarco.checked ? ' + marco con nombre' : ''} — $${fmtP.format(total)}. ¿Cómo hago el pedido?`);
+}
+hbMarco.addEventListener('change', huellaBox);
+hbPrecio.dataset.v = 3550; huellaBox();
+
 /* barra de pestañas: la burbuja camina hasta la sección */
 const tabbar = document.querySelector('.tabbar'), bola = tabbar.querySelector('.bola');
 let bolaX = null;
@@ -1034,7 +1155,7 @@ function ir() {
   document.querySelectorAll('[data-ir]').forEach(a => a.classList.toggle('activo', a.dataset.ir === destino));
   moverBola();
   const ancho = ancla && !ancla.matches('section');
-  window.scrollTo({ top: ancho ? ancla.getBoundingClientRect().top + scrollY - 90 : 0, behavior: 'instant' });
+  if (ancho) { ancla.classList.add('in'); const ir_a = () => window.scrollTo({ top: ancla.getBoundingClientRect().top + scrollY - 110, behavior: 'instant' }); requestAnimationFrame(ir_a); setTimeout(ir_a, 450); setTimeout(ir_a, 1200); } else window.scrollTo({ top: 0, behavior: 'instant' });
   requestAnimationFrame(() => { moverInd(); if (innerWidth > 720) sembrarPies(); });
 }
 addEventListener('hashchange', ir);
