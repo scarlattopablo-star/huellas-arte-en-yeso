@@ -248,6 +248,57 @@ header>*{pointer-events:auto}
 .taller .sello-t{position:absolute;left:-10px;top:30px;background:var(--tinta);color:var(--yeso);padding:.5rem 1rem;border-radius:999px;font-size:1.35rem;transform:rotate(-6deg)}
 @media(max-width:820px){.taller .mini{right:-4px}.taller .sello-t{left:4px}}
 
+
+/* ---------- pantallas ---------- */
+.vista[hidden]{display:none!important}
+.vista.entra{animation:vistaIn .7s cubic-bezier(.2,.8,.2,1)}
+@keyframes vistaIn{from{opacity:0;transform:translateY(34px)}}
+.vista:not([data-vista="inicio"])>section:first-child{padding-top:130px}
+.pill a.activo{background:#fff;color:var(--tinta)}
+.esc-sec .escul{margin-top:0}
+.horiz{height:300vh}
+.accesos{padding:90px 0 120px}
+.accesos h2{font-size:clamp(2.6rem,6.4vw,6rem);font-weight:800;letter-spacing:-.05em;line-height:.88;margin:16px 0 44px}
+.tiles{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-auto-rows:280px;gap:16px}
+.tile{position:relative;border-radius:28px;overflow:hidden;background:var(--tinta);color:#fff;display:flex;align-items:flex-end;padding:24px;isolation:isolate}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.tile::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(22,34,43,0) 30%,rgba(22,34,43,.85) 100%);transition:opacity .4s}
+.tile:hover img{transform:scale(1.08)}
+.tile .n{position:absolute;top:20px;left:22px;font-weight:700;font-size:.85rem;opacity:.85}
+.tile .tx{display:flex;flex-direction:column;gap:6px;max-width:30ch;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.tile:hover .tx{transform:translateY(-6px)}
+.tile em{font-style:normal;align-self:flex-start;background:var(--oro-grad);color:#2a1e08;font-weight:800;font-size:.85rem;padding:.3rem .7rem;border-radius:999px}
+.tile b{font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:800;letter-spacing:-.04em;line-height:.95}
+.tile small{font-size:.95rem;opacity:.85;line-height:1.35}
+.tile i{position:absolute;top:18px;right:18px;width:46px;height:46px;border-radius:50%;background:#fff;color:var(--tinta);display:grid;place-items:center;font-style:normal;font-size:1.3rem;font-weight:700;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.tile:hover i{transform:rotate(-45deg) scale(1.1)}
+.t-cuadros{grid-row:span 2}
+.t-cuadros b{font-size:clamp(2.2rem,3.6vw,3.4rem)}
+.t-arma{background:var(--celeste)}
+.t-arma::before{display:none}
+.t-arma b{font-size:clamp(2rem,3vw,2.8rem)}
+.t-tathi{grid-column:span 3;grid-row:auto}
+@media(max-width:860px){.tiles{grid-template-columns:1fr 1fr;grid-auto-rows:190px}.t-cuadros{grid-column:span 2;grid-row:span 2}.t-tathi{grid-column:span 2}.tile{padding:18px}.tile small{display:none}.tile i{width:38px;height:38px;font-size:1.1rem}}
+.navpie{padding:50px 0 70px;background:var(--yeso)}
+.navpie .wrap{display:flex;justify-content:space-between;align-items:stretch;gap:14px}
+.np-volver{display:flex;align-items:center;padding:0 1.6rem;border:2px solid var(--tinta);border-radius:999px;font-weight:700}
+.np-sig{flex:1;max-width:560px;display:flex;flex-direction:column;align-items:flex-end;background:var(--tinta);color:var(--yeso);border-radius:28px;padding:22px 30px;transition:transform .3s,background .3s}
+.np-sig small{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--celeste);font-weight:700}
+.np-sig b{font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.04em}
+.np-sig:hover{transform:translateY(-4px);background:var(--celeste-hondo)}
+.tabbar{display:none}
+@media(max-width:820px){
+  .tabbar{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:115;background:rgba(22,34,43,.94);backdrop-filter:blur(12px);border-radius:22px;padding:6px;justify-content:space-between}
+  .tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:#AFC0CB;font-size:.68rem;font-weight:700;padding:7px 2px;border-radius:16px;transition:background .3s,color .3s}
+  .tabbar a span{font-size:1.15rem;line-height:1}
+  .tabbar a.activo{background:#fff;color:var(--tinta)}
+  body .wa-flota{bottom:92px;width:56px;height:56px}
+  body{padding-bottom:84px}
+  .navpie .wrap{flex-direction:column-reverse}
+  .np-volver{justify-content:center;padding:.9rem}
+  .np-sig{max-width:none}
+}
+
 /* ---------- para quién ---------- */
 .quien{padding:140px 0 120px}
 .quien h2,.proceso h2,.voces h2,.faq h2{font-size:clamp(2.6rem,6.4vw,6rem);font-weight:800;letter-spacing:-.05em;line-height:.88;margin:16px 0 60px}
@@ -395,16 +446,18 @@ header>*{pointer-events:auto}
 <div id="prog"></div>
 
 <header>
-  <a href="#" class="logo"><img src="img/logo.jpg" alt=""><span><b>huellas</b><small>arte en yeso</small></span></a>
+  <a href="#/inicio" class="logo"><img src="img/logo.jpg" alt=""><span><b>huellas</b><small>arte en yeso</small></span></a>
   <nav class="pill">
-    <a href="#precios">Precios</a>
-    <a href="#trabajos">Trabajos</a>
-    <a href="#como">Cómo es</a>
-    <a href="#arma">Armá el tuyo</a>
+    <a href="#/cuadros" data-ir="cuadros">Cuadros</a>
+    <a href="#/esculturas" data-ir="esculturas">Esculturas</a>
+    <a href="#/trabajos" data-ir="trabajos">Trabajos</a>
+    <a href="#/como" data-ir="como">Cómo es</a>
+    <a href="#/arma" data-ir="arma">Armá el tuyo</a>
   </nav>
 </header>
 
 <main>
+<div class="vista" data-vista="inicio" data-titulo="Huellas · Arte en Yeso">
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="wrap">
@@ -432,46 +485,37 @@ header>*{pointer-events:auto}
   <div class="banda b1"><div class="t"><span>Punta Carretas <i>✦</i></span><span>Vamos a tu casa <i>✦</i></span><span>Montevideo <i>✦</i></span><span>Maldonado <i>✦</i></span><span>Hecho a mano <i>✦</i></span><span>Toma de 15 minutos <i>✦</i></span><span>Listo en 1 semana <i>✦</i></span></div><div class="t"><span>Punta Carretas <i>✦</i></span><span>Vamos a tu casa <i>✦</i></span><span>Montevideo <i>✦</i></span><span>Maldonado <i>✦</i></span><span>Hecho a mano <i>✦</i></span><span>Toma de 15 minutos <i>✦</i></span><span>Listo en 1 semana <i>✦</i></span></div></div>
 </div>
 
-<!-- RELOJ -->
-<section class="reloj">
-  <div class="wrap reloj-grid">
-    <div class="sube">
-      <span class="kicker">El reloj corre</span>
-      <h2>Mové la barra.<br><span class="serif" style="color:var(--celeste)">Mirá qué rápido pasa.</span></h2>
-      <p class="txt">La manito que hoy entra entera en tu palma, mañana te agarra el dedo, después te suelta para caminar. Ese tamaño no vuelve.</p>
-      <div class="rango">
-        <input type="range" id="edad" min="0" max="36" value="0" aria-label="Edad del bebé en meses">
-        <div class="marcas"><span>Nace</span><span>6 m</span><span>1 año</span><span>2 años</span><span>3 años</span></div>
-      </div>
-      <p class="remate mano">…por eso, <span style="color:var(--oro)">hoy</span> es el mejor día para guardarla.</p>
-    </div>
-    <div class="escenario sube">
-      <div class="edad" id="edad-txt">0 <small>meses</small></div>
-      <svg class="manito" id="mano-crece" viewBox="0 0 100 120" style="color:var(--celeste-pastel)"><use href="#manito"/></svg>
-      <div class="frase" id="frase">Recién llegado. Cabe entera en tu mano.</div>
+<!-- ACCESOS -->
+<section class="accesos">
+  <div class="wrap">
+    <span class="kicker" style="color:var(--celeste-hondo)">Elegí por dónde empezar</span>
+    <h2 class="sube">¿Qué querés <span class="serif">ver?</span></h2>
+    <div class="tiles">
+      <a class="tile t-cuadros sube" href="#/cuadros"><img src="img/cat/francisco.jpg" alt="" loading="lazy"><span class="n">01</span><span class="tx"><em>desde $3.450</em><b>Cuadros personalizados</b><small>Manitos y piecitos con nombre y foto, precio según la edad</small></span><i>→</i></a>
+      <a class="tile sube" href="#/esculturas"><img src="img/cat/esc-familia-oro.jpg" alt="" loading="lazy"><span class="n">02</span><span class="tx"><em>desde $4.500</em><b>Esculturas 3D</b><small>Manos de la familia y tu oficio en yeso</small></span><i>→</i></a>
+      <a class="tile sube" href="#/trabajos"><img src="img/hero-mama.jpg" alt="" loading="lazy"><span class="n">03</span><span class="tx"><b>Trabajos reales</b><small>Familias que ya guardaron su huella</small></span><i>→</i></a>
+      <a class="tile sube" href="#/como"><img src="img/cat/taller-retoque-mano.jpg" alt="" loading="lazy"><span class="n">04</span><span class="tx"><b>Cómo es</b><small>Toma de 15 min, listo en 1 semana y preguntas</small></span><i>→</i></a>
+      <a class="tile t-arma sube" href="#/arma"><span class="n">05</span><span class="tx"><b>Armá el tuyo</b><small>Probá tu cuadro en 10 segundos</small></span><i>→</i></a>
+      <a class="tile t-tathi sube" href="#/tathiana"><img src="img/cat/taller-retoque-bebe.jpg" alt="" loading="lazy"><span class="n">06</span><span class="tx"><b>Conocé a Tathiana</b><small>Cada pieza, hecha y retocada a mano</small></span><i>→</i></a>
     </div>
   </div>
 </section>
 
-<!-- GALERÍA HORIZONTAL -->
-<section class="horiz" id="trabajos">
-  <div class="pin">
-    <div class="titulo">
-      <h2>Ya guardaron<br><span class="serif">su huella</span></h2>
-      <span class="contador" id="cont">01 / 06</span>
-    </div>
-    <div class="track" id="track">
-      <figure class="pieza-g"><div class="foto"><img src="img/hero-mama.jpg" alt="Mamá con su bebé y el cuadro de Isabella"></div><figcaption class="nota">Isabella 🤍</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/p3.jpg" alt="Cuadro de hermanos con manos doradas"></div><figcaption class="nota">hermanitos, en dorado</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/p1.jpg" alt="Bebé sonriendo con su cuadro"></div><figcaption class="nota">Fausto aprobó ✓</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/p2.jpg" alt="Cuadro blanco de Francisco"></div><figcaption class="nota">blanco yeso natural</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/p4.jpg" alt="Cuadro de Vito frente a la ventana"></div><figcaption class="nota">Vito, con vista</figcaption></figure>
-      <a class="pieza-g final" href="https://www.instagram.com/huellas.arte.en.yeso/" target="_blank" rel="noopener"><div><b>¿El próximo es el tuyo?</b>Ver más en Instagram →</div></a>
+<!-- CIERRE -->
+<section class="cierre">
+  <div class="wrap">
+    <h2 class="sube">Dejá<br><span class="serif oro-txt">su huella.</span></h2>
+    <p class="sube">Hay momentos que duran apenas un instante… pero merecen quedarse para siempre.</p>
+    <div class="iman" id="iman"><a class="btn btn-wa" href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20reservar%20%F0%9F%A4%8D" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Reservar por WhatsApp</a></div>
+    <div class="pie">
+      <span>© Huellas · Arte en Yeso — Punta Carretas, Montevideo · Maldonado</span>
+      <span><a href="https://www.instagram.com/huellas.arte.en.yeso/" target="_blank" rel="noopener">Instagram</a> · <a href="https://wa.me/59896303052" target="_blank" rel="noopener">096 303 052</a></span>
     </div>
   </div>
 </section>
 
-
+</div>
+<div class="vista" hidden data-vista="cuadros" data-titulo="Cuadros y precios">
 <!-- CATÁLOGO -->
 <section class="catalogo" id="precios">
   <div class="wrap">
@@ -543,6 +587,25 @@ header>*{pointer-events:auto}
       </article>
     </div>
 
+    <div class="extras">
+      <div class="extra sube"><b>⏱</b><strong>Toma de 15–20 min</strong><p>Rápida, sencilla y segura.</p></div>
+      <div class="extra sube"><b>📅</b><strong>Listo en ~1 semana</strong><p>Aproximadamente 5 días o una semana.</p></div>
+      <div class="extra sube"><b>📍</b><strong>Punta Carretas</strong><p>O a domicilio en zonas cercanas (costo adicional).</p></div>
+      <div class="extra sube"><b>🎨</b><strong>Todo personalizado</strong><p>Nombre, colores, marco, accesorios y diseño.</p></div>
+      <div class="extra sube"><b>🛡</b><strong>Materiales seguros</strong><p>Profesionales y de alta calidad.</p></div>
+    </div>
+    <p class="nota-cat">Precios en pesos uruguayos. ¿Mascotas? <a href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20consultar%20precio%20para%20mascotas%20%F0%9F%A4%8D" target="_blank" rel="noopener">Consultanos el precio por WhatsApp</a>.</p>
+  </div>
+</section>
+<nav class="navpie"><div class="wrap">
+  <a href="#/inicio" class="np-volver">← Inicio</a>
+  <a href="#/esculturas" class="np-sig"><small>Siguiente</small><b>Esculturas 3D →</b></a>
+</div></nav>
+</div>
+<div class="vista" hidden data-vista="esculturas" data-titulo="Esculturas 3D">
+<!-- ESCULTURAS -->
+<section class="catalogo esc-sec">
+  <div class="wrap">
     <div class="escul sube" id="esculturas">
       <div class="visor" id="visor">
         <img class="on" src="img/cat/esc-adulto-bebe.jpg" alt="Escultura blanca de una mano adulta sosteniendo la manito de un bebé" data-cap="Adulto + bebé" loading="lazy">
@@ -584,14 +647,29 @@ header>*{pointer-events:auto}
       </div>
     </div>
 
-    <div class="extras">
-      <div class="extra sube"><b>⏱</b><strong>Toma de 15–20 min</strong><p>Rápida, sencilla y segura.</p></div>
-      <div class="extra sube"><b>📅</b><strong>Listo en ~1 semana</strong><p>Aproximadamente 5 días o una semana.</p></div>
-      <div class="extra sube"><b>📍</b><strong>Punta Carretas</strong><p>O a domicilio en zonas cercanas (costo adicional).</p></div>
-      <div class="extra sube"><b>🎨</b><strong>Todo personalizado</strong><p>Nombre, colores, marco, accesorios y diseño.</p></div>
-      <div class="extra sube"><b>🛡</b><strong>Materiales seguros</strong><p>Profesionales y de alta calidad.</p></div>
+  </div>
+</section>
+<nav class="navpie"><div class="wrap">
+  <a href="#/inicio" class="np-volver">← Inicio</a>
+  <a href="#/trabajos" class="np-sig"><small>Siguiente</small><b>Trabajos reales →</b></a>
+</div></nav>
+</div>
+<div class="vista" hidden data-vista="trabajos" data-titulo="Trabajos">
+<!-- GALERÍA HORIZONTAL -->
+<section class="horiz" id="trabajos">
+  <div class="pin">
+    <div class="titulo">
+      <h2>Ya guardaron<br><span class="serif">su huella</span></h2>
+      <span class="contador" id="cont">01 / 06</span>
     </div>
-    <p class="nota-cat">Precios en pesos uruguayos. ¿Mascotas? <a href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20consultar%20precio%20para%20mascotas%20%F0%9F%A4%8D" target="_blank" rel="noopener">Consultanos el precio por WhatsApp</a>.</p>
+    <div class="track" id="track">
+      <figure class="pieza-g"><div class="foto"><img src="img/hero-mama.jpg" alt="Mamá con su bebé y el cuadro de Isabella"></div><figcaption class="nota">Isabella 🤍</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img src="img/p3.jpg" alt="Cuadro de hermanos con manos doradas"></div><figcaption class="nota">hermanitos, en dorado</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img src="img/p1.jpg" alt="Bebé sonriendo con su cuadro"></div><figcaption class="nota">Fausto aprobó ✓</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img src="img/p2.jpg" alt="Cuadro blanco de Francisco"></div><figcaption class="nota">blanco yeso natural</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img src="img/p4.jpg" alt="Cuadro de Vito frente a la ventana"></div><figcaption class="nota">Vito, con vista</figcaption></figure>
+      <a class="pieza-g final" href="https://www.instagram.com/huellas.arte.en.yeso/" target="_blank" rel="noopener"><div><b>¿El próximo es el tuyo?</b>Ver más en Instagram →</div></a>
+    </div>
   </div>
 </section>
 
@@ -605,6 +683,32 @@ header>*{pointer-events:auto}
       <article class="tj t2 sube"><span class="num">02</span><span class="emoji">🤝</span><div><h3>Parejas y familia</h3><p>Padres, abuelos, hermanos o amigos de toda la vida, de la mano para siempre.</p></div></article>
       <article class="tj t3 sube"><span class="num">03</span><span class="emoji">🐾</span><div><h3>Mascotas</h3><p>Las huellitas de tu compañero de cuatro patas, en yeso.</p></div></article>
       <article class="tj t4 sube"><span class="num">04</span><span class="emoji">🎨</span><div><h3>Kit artístico</h3><p>Una propuesta para crear en casa. Consultanos qué incluye.</p></div></article>
+    </div>
+  </div>
+</section>
+<nav class="navpie"><div class="wrap">
+  <a href="#/inicio" class="np-volver">← Inicio</a>
+  <a href="#/como" class="np-sig"><small>Siguiente</small><b>Cómo es →</b></a>
+</div></nav>
+</div>
+<div class="vista" hidden data-vista="como" data-titulo="Cómo es">
+<!-- RELOJ -->
+<section class="reloj">
+  <div class="wrap reloj-grid">
+    <div class="sube">
+      <span class="kicker">El reloj corre</span>
+      <h2>Mové la barra.<br><span class="serif" style="color:var(--celeste)">Mirá qué rápido pasa.</span></h2>
+      <p class="txt">La manito que hoy entra entera en tu palma, mañana te agarra el dedo, después te suelta para caminar. Ese tamaño no vuelve.</p>
+      <div class="rango">
+        <input type="range" id="edad" min="0" max="36" value="0" aria-label="Edad del bebé en meses">
+        <div class="marcas"><span>Nace</span><span>6 m</span><span>1 año</span><span>2 años</span><span>3 años</span></div>
+      </div>
+      <p class="remate mano">…por eso, <span style="color:var(--oro)">hoy</span> es el mejor día para guardarla.</p>
+    </div>
+    <div class="escenario sube">
+      <div class="edad" id="edad-txt">0 <small>meses</small></div>
+      <svg class="manito" id="mano-crece" viewBox="0 0 100 120" style="color:var(--celeste-pastel)"><use href="#manito"/></svg>
+      <div class="frase" id="frase">Recién llegado. Cabe entera en tu mano.</div>
     </div>
   </div>
 </section>
@@ -626,6 +730,27 @@ header>*{pointer-events:auto}
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="sube">Preguntas<br><span class="serif">frecuentes</span></h2>
+    <details><summary>¿Dónde se hace la sesión? <i>+</i></summary><p>En nuestro salón de Punta Carretas, o vamos a tu casa si estás en una zona cercana (con costo adicional). También trabajamos en Maldonado.</p></details>
+    <details><summary>¿Hacen huellas de mascotas? <i>+</i></summary><p>¡Sí! Bebés, niños, parejas, familias y también las huellitas de tu mascota.</p></details>
+    <details><summary>¿Qué terminaciones hay? <i>+</i></summary><p>Blanco yeso natural, dorado y bronce. Podés sumar su nombre en letras y una foto dentro del cuadro.</p></details>
+    <details><summary>¿Cuánto cuesta? <i>+</i></summary><p>Desde $3.450 una pieza para bebés de 0 a 11 meses. El precio depende de la edad y de cuántas piezas lleva el cuadro: <a href="#precios" style="text-decoration:underline">mirá el catálogo completo</a>. El cuadro para hermanos tiene precio único de $5.590 y las esculturas de manos en familia van desde $4.500.</p></details>
+    <details><summary>¿Pueden hacer la mano con un objeto? <i>+</i></summary><p>Sí: una tijera, un micrófono o lo que represente tu oficio o tu pasión. Escribinos por WhatsApp y te pasamos el precio.</p></details>
+    <details><summary>¿Cuánto dura la toma? <i>+</i></summary><p>Entre 15 y 20 minutos. Es rápida, sencilla y segura, con materiales profesionales.</p></details>
+    <details><summary>¿Cuándo está listo el cuadro? <i>+</i></summary><p>En aproximadamente 5 días o una semana.</p></details>
+    <details><summary>¿Tengo que decidir el diseño antes? <i>+</i></summary><p>No. El día de la toma te mostramos todas las opciones para que elijas lo que más te guste: nombre, colores, marco, accesorios y diseño.</p></details>
+    <!-- PARA COMPLETAR CON TATHIANA: formas de pago, gift cards, precios de mascotas -->
+  </div>
+</section>
+<nav class="navpie"><div class="wrap">
+  <a href="#/inicio" class="np-volver">← Inicio</a>
+  <a href="#/arma" class="np-sig"><small>Siguiente</small><b>Armá el tuyo →</b></a>
+</div></nav>
+</div>
+<div class="vista" hidden data-vista="arma" data-titulo="Armá el tuyo">
 <!-- CONFIGURADOR -->
 <section class="arma" id="arma">
   <div class="gigante" aria-hidden="true">huellas</div>
@@ -651,7 +776,12 @@ header>*{pointer-events:auto}
     </div>
   </div>
 </section>
-
+<nav class="navpie"><div class="wrap">
+  <a href="#/inicio" class="np-volver">← Inicio</a>
+  <a href="#/tathiana" class="np-sig"><small>Siguiente</small><b>Conocé a Tathiana →</b></a>
+</div></nav>
+</div>
+<div class="vista" hidden data-vista="tathiana" data-titulo="Tathiana">
 <!-- PRUEBA SOCIAL -->
 <section class="voces">
   <div class="wrap">
@@ -675,37 +805,20 @@ header>*{pointer-events:auto}
     </div>
   </div>
 </section>
-
-<!-- FAQ -->
-<section class="faq">
-  <div class="wrap">
-    <h2 class="sube">Preguntas<br><span class="serif">frecuentes</span></h2>
-    <details><summary>¿Dónde se hace la sesión? <i>+</i></summary><p>En nuestro salón de Punta Carretas, o vamos a tu casa si estás en una zona cercana (con costo adicional). También trabajamos en Maldonado.</p></details>
-    <details><summary>¿Hacen huellas de mascotas? <i>+</i></summary><p>¡Sí! Bebés, niños, parejas, familias y también las huellitas de tu mascota.</p></details>
-    <details><summary>¿Qué terminaciones hay? <i>+</i></summary><p>Blanco yeso natural, dorado y bronce. Podés sumar su nombre en letras y una foto dentro del cuadro.</p></details>
-    <details><summary>¿Cuánto cuesta? <i>+</i></summary><p>Desde $3.450 una pieza para bebés de 0 a 11 meses. El precio depende de la edad y de cuántas piezas lleva el cuadro: <a href="#precios" style="text-decoration:underline">mirá el catálogo completo</a>. El cuadro para hermanos tiene precio único de $5.590 y las esculturas de manos en familia van desde $4.500.</p></details>
-    <details><summary>¿Pueden hacer la mano con un objeto? <i>+</i></summary><p>Sí: una tijera, un micrófono o lo que represente tu oficio o tu pasión. Escribinos por WhatsApp y te pasamos el precio.</p></details>
-    <details><summary>¿Cuánto dura la toma? <i>+</i></summary><p>Entre 15 y 20 minutos. Es rápida, sencilla y segura, con materiales profesionales.</p></details>
-    <details><summary>¿Cuándo está listo el cuadro? <i>+</i></summary><p>En aproximadamente 5 días o una semana.</p></details>
-    <details><summary>¿Tengo que decidir el diseño antes? <i>+</i></summary><p>No. El día de la toma te mostramos todas las opciones para que elijas lo que más te guste: nombre, colores, marco, accesorios y diseño.</p></details>
-    <!-- PARA COMPLETAR CON TATHIANA: formas de pago, gift cards, precios de mascotas -->
-  </div>
-</section>
-
-<!-- CIERRE -->
-<section class="cierre">
-  <div class="wrap">
-    <h2 class="sube">Dejá<br><span class="serif oro-txt">su huella.</span></h2>
-    <p class="sube">Hay momentos que duran apenas un instante… pero merecen quedarse para siempre.</p>
-    <div class="iman" id="iman"><a class="btn btn-wa" href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20reservar%20%F0%9F%A4%8D" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Reservar por WhatsApp</a></div>
-    <div class="pie">
-      <span>© Huellas · Arte en Yeso — Punta Carretas, Montevideo · Maldonado</span>
-      <span><a href="https://www.instagram.com/huellas.arte.en.yeso/" target="_blank" rel="noopener">Instagram</a> · <a href="https://wa.me/59896303052" target="_blank" rel="noopener">096 303 052</a></span>
-    </div>
-  </div>
-</section>
+<nav class="navpie"><div class="wrap">
+  <a href="#/inicio" class="np-volver">← Inicio</a>
+  <a href="#/inicio" class="np-sig"><small>Siguiente</small><b>Volver al inicio →</b></a>
+</div></nav>
+</div>
 </main>
 
+<nav class="tabbar" aria-label="Secciones">
+  <a href="#/inicio" data-ir="inicio"><span>🏠</span>Inicio</a>
+  <a href="#/cuadros" data-ir="cuadros"><span>🖼</span>Cuadros</a>
+  <a href="#/esculturas" data-ir="esculturas"><span>✋</span>Esculturas</a>
+  <a href="#/trabajos" data-ir="trabajos"><span>✨</span>Trabajos</a>
+  <a href="#/como" data-ir="como"><span>💬</span>Cómo es</a>
+</nav>
 <a class="wa-flota" href="https://wa.me/59896303052" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg><use href="#wa"/></svg></a>
 
 <script>
@@ -898,6 +1011,27 @@ document.querySelectorAll('.fila-e').forEach(a => {
   a.addEventListener('mouseenter', entrar); a.addEventListener('focus', entrar);
   a.addEventListener('mouseleave', () => vPausa = false); a.addEventListener('blur', () => vPausa = false);
 });
+
+/* pantallas: una sección a la vez */
+const VISTAS = [...document.querySelectorAll('.vista')];
+function ir() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  let destino = 'inicio', ancla = null;
+  if (h.startsWith('/')) destino = h.slice(1) || 'inicio';
+  else if (h) { const el = document.getElementById(h); const v = el && el.closest('.vista'); if (v) { destino = v.dataset.vista; ancla = el; } }
+  if (!VISTAS.some(v => v.dataset.vista === destino)) destino = 'inicio';
+  VISTAS.forEach(v => {
+    const on = v.dataset.vista === destino;
+    if (on) { if (v.hidden) { v.hidden = false; v.classList.remove('entra'); void v.offsetWidth; if (!calmo) v.classList.add('entra'); } document.title = v.dataset.vista === 'inicio' ? v.dataset.titulo : v.dataset.titulo + ' · Huellas'; }
+    else if (!on) v.hidden = true;
+  });
+  document.querySelectorAll('[data-ir]').forEach(a => a.classList.toggle('activo', a.dataset.ir === destino));
+  const ancho = ancla && !ancla.matches('section');
+  window.scrollTo({ top: ancho ? ancla.getBoundingClientRect().top + scrollY - 90 : 0, behavior: 'instant' });
+  requestAnimationFrame(() => { moverInd(); if (innerWidth > 720) sembrarPies(); });
+}
+addEventListener('hashchange', ir);
+ir();
 
 /* configurador */
 const estado = { quien: 'Bebé', acabado: 'Dorado', color: '#C9A25A' };
