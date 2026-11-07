@@ -291,13 +291,13 @@ header>*{pointer-events:auto}
   .tabbar a{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8FA3B0;font-size:.66rem;font-weight:700;letter-spacing:.02em}
   .tabbar .ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:transform .55s cubic-bezier(.3,1.6,.5,1),color .3s}
   .tabbar .ic .relleno{fill:currentColor;stroke:none}
-  .tabbar .ic-corazon{display:block;background:currentColor;-webkit-mask:url(img/corazon-blanco.png) center/contain no-repeat;mask:url(img/corazon-blanco.png) center/contain no-repeat}
+  .tabbar .ic-corazon{display:block;background:currentColor;-webkit-mask:url(img/corazon-icono.png) center/contain no-repeat;mask:url(img/corazon-icono.png) center/contain no-repeat;width:27px;height:25px}
   .tabbar em{font-style:normal;transition:color .3s,transform .4s}
   .tabbar a.activo{color:#fff}
   .tabbar a.activo .ic{transform:translateY(-25px) scale(1.12)}
   .tabbar a.activo em{color:#E9CF8F;transform:translateY(-2px)}
   .tabbar a:active .ic{transform:scale(.85)}
-  .tabbar .bola{position:absolute;z-index:1;top:-26px;left:0;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#86CBE3,var(--celeste) 55%,var(--celeste-hondo));box-shadow:0 0 0 6px var(--yeso),0 12px 22px -8px rgba(47,143,179,.8);transition:transform .6s cubic-bezier(.3,1.35,.5,1)}
+  .tabbar .bola{position:absolute;z-index:1;top:-26px;left:0;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#86CBE3,var(--celeste) 55%,var(--celeste-hondo));box-shadow:0 0 0 6px var(--yeso),0 12px 22px -8px rgba(47,143,179,.8);transition:transform .6s cubic-bezier(.3,1.35,.5,1),opacity .3s}
   .tabbar .bola::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px dashed rgba(201,162,90,.7);animation:gira 12s linear infinite}
   .tabbar .pasito{position:absolute;z-index:1;top:-6px;width:9px;height:12px;color:var(--celeste);pointer-events:none;animation:pasito 1s ease forwards}
   @keyframes pasito{0%{opacity:0;transform:var(--t) scale(.4)}25%{opacity:.9;transform:var(--t) scale(1)}100%{opacity:0;transform:var(--t) scale(.8)}}
@@ -346,7 +346,7 @@ header>*{pointer-events:auto}
 .caja .c-cuerpo{position:absolute;inset:34px 8px 0;background:#B98A4E;border-radius:10px;box-shadow:inset 0 -10px 0 rgba(0,0,0,.08),0 16px 26px -12px rgba(58,40,16,.6)}
 .caja .c-tapa{position:absolute;left:0;right:0;top:14px;height:34px;background:#C99A5C;border-radius:10px;transform-origin:left bottom;animation:abre 4s ease-in-out infinite}
 .caja .c-cinta{position:absolute;left:50%;top:14px;bottom:0;width:20px;margin-left:-10px;background:var(--celeste);opacity:.9}
-.caja .c-cora{position:absolute;left:50%;top:70px;width:56px;height:50px;margin-left:-28px;background:#fff;-webkit-mask:url(img/corazon-blanco.png) center/contain no-repeat;mask:url(img/corazon-blanco.png) center/contain no-repeat}
+.caja .c-cora{position:absolute;left:50%;top:70px;width:56px;height:50px;margin-left:-28px;background:#fff;-webkit-mask:url(img/corazon-icono.png) center/contain no-repeat;mask:url(img/corazon-icono.png) center/contain no-repeat}
 @keyframes flotaCaja{50%{transform:rotate(-4deg) translateY(-8px)}}
 @keyframes abre{0%,60%,100%{transform:none}75%,90%{transform:rotate(-22deg)}}
 .hbox h3{font-size:clamp(2.2rem,4.4vw,3.6rem);font-weight:800;letter-spacing:-.05em;line-height:.9;margin:10px 0 12px}
@@ -531,7 +531,7 @@ header>*{pointer-events:auto}
       <a class="tile sube" href="#/trabajos"><img src="img/hero-mama.jpg" alt="" loading="lazy"><span class="n">03</span><span class="tx"><b>Trabajos reales</b><small>Familias que ya guardaron su huella</small></span><i>→</i></a>
       <a class="tile sube" href="#/como"><img src="img/cat/taller-moldeando.jpg" alt="" loading="lazy"><span class="n">04</span><span class="tx"><b>Cómo es</b><small>Toma de 15 min, listo en 1 semana y preguntas</small></span><i>→</i></a>
       <a class="tile t-arma sube" href="#/arma"><span class="n">05</span><span class="tx"><b>Armá el tuyo</b><small>Probá tu cuadro en 10 segundos</small></span><i>→</i></a>
-      <a class="tile t-tathi sube" href="#/tathiana"><img src="img/cat/taller-retoque-bebe.jpg" alt="" loading="lazy"><span class="n">06</span><span class="tx"><b>Conocé a Tathiana</b><small>Cada pieza, hecha y retocada a mano</small></span><i>→</i></a>
+      <a class="tile t-tathi sube" href="#/tathiana"><img src="img/cat/taller-retoque-bebe.jpg" alt="" loading="lazy"><span class="n">06</span><span class="tx"><b>Conocé a Tathiana</b><small>Cada pieza, hecha a mano con amor</small></span><i>→</i></a>
     </div>
   </div>
 </section>
@@ -874,9 +874,9 @@ header>*{pointer-events:auto}
     </div>
     <div class="tathi">
       <div class="taller sube">
-        <div class="foto"><img src="img/cat/taller-retoque-bebe.jpg" alt="Tathiana retocando a mano una escultura de mano adulta con manito de bebé" loading="lazy"></div>
-        <div class="mini"><img src="img/cat/taller-retoque-mano.jpg" alt="Retoque con herramienta de una mano en yeso recién desmoldada" loading="lazy"></div>
-        <span class="sello-t mano">retocada a mano ✦</span>
+        <div class="foto"><img src="img/cat/taller-retoque-bebe.jpg" alt="Tathiana dando los detalles finales a una escultura de mano adulta con manito de bebé" loading="lazy"></div>
+        <div class="mini"><img src="img/cat/taller-retoque-mano.jpg" alt="Detalles finales con herramienta en una mano de yeso" loading="lazy"></div>
+        <span class="sello-t mano">hecha a mano ✦</span>
       </div>
       <div class="sube">
         <span class="kicker" style="color:var(--celeste-hondo)">Detrás de cada pieza</span>
@@ -1122,7 +1122,7 @@ hbPrecio.dataset.v = 3550; huellaBox();
 const tabbar = document.querySelector('.tabbar'), bola = tabbar.querySelector('.bola');
 let bolaX = null;
 function moverBola() {
-  const a = tabbar.querySelector('a.activo'); if (!a || getComputedStyle(tabbar).display === 'none') return;
+  const a = tabbar.querySelector('a.activo'); bola.style.opacity = a ? 1 : 0; if (!a || getComputedStyle(tabbar).display === 'none') return;
   const x = a.offsetLeft + a.offsetWidth / 2 - 27;
   if (bolaX !== null && Math.abs(x - bolaX) > 10 && !calmo) {
     const pasos = 4, dir = x > bolaX ? 90 : -90;
