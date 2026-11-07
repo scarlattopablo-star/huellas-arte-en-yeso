@@ -378,6 +378,20 @@ header>*{pointer-events:auto}
 .tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
 .tile:hover video{transform:scale(1.08)}
 
+
+/* ---------- videos con sonido ---------- */
+.sonido{position:absolute;left:50%;bottom:22px;z-index:3;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:inherit;font-weight:800;font-size:.9rem;color:var(--tinta);background:#fff;border:0;border-radius:999px;padding:.7rem 1.1rem;cursor:pointer;box-shadow:0 12px 24px -10px rgba(0,0,0,.6);transition:transform .2s}
+.sonido:hover{transform:translateX(-50%) scale(1.06)}
+.sonido .ondas{display:inline-flex;gap:2px;align-items:flex-end;height:14px}
+.sonido .ondas i{width:3px;background:var(--celeste-hondo);border-radius:2px;animation:onda 1s ease-in-out infinite}
+.sonido .ondas i:nth-child(1){height:6px}.sonido .ondas i:nth-child(2){height:12px;animation-delay:.15s}.sonido .ondas i:nth-child(3){height:8px;animation-delay:.3s}
+@keyframes onda{50%{transform:scaleY(.35)}}
+.sonido.on{background:var(--tinta);color:#fff;bottom:auto;top:34px;left:auto;right:14px;transform:none;padding:.45rem .7rem;font-size:.8rem}
+.sonido.on .ondas i{background:#fff}
+.historia{padding:110px 0 30px;background:linear-gradient(180deg,var(--yeso),var(--celeste-pastel))}
+.historia .toma{margin-bottom:0}
+.historia .cita-h{font-family:"Caveat";font-size:1.7rem;color:var(--celeste-hondo);margin-top:18px}
+
 /* ---------- para quién ---------- */
 .quien{padding:140px 0 120px}
 .quien h2,.proceso h2,.voces h2,.faq h2{font-size:clamp(2.6rem,6.4vw,6rem);font-weight:800;letter-spacing:-.05em;line-height:.88;margin:16px 0 60px}
@@ -551,6 +565,23 @@ header>*{pointer-events:auto}
       <a class="tile sube" href="#/como"><video autoplay muted loop playsinline preload="metadata" poster="img/cat/toma-maldonado-poster.jpg" aria-hidden="true"><source src="video/toma-maldonado.mp4" type="video/mp4"></video><span class="n">04</span><span class="tx"><b>Cómo es</b><small>Mirá cómo es la toma: 15 minutos, en brazos de mamá</small></span><i>→</i></a>
       <a class="tile t-arma sube" href="#/arma"><span class="n">05</span><span class="tx"><b>Armá el tuyo</b><small>Probá tu cuadro en 10 segundos</small></span><i>→</i></a>
       <a class="tile t-tathi sube" href="#/tathiana"><img src="img/cat/taller-retoque-bebe.jpg" alt="" loading="lazy"><span class="n">06</span><span class="tx"><b>Conocé a Tathiana</b><small>Cada pieza, hecha a mano con amor</small></span><i>→</i></a>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA SAMI -->
+<section class="historia">
+  <div class="wrap toma sube">
+    <div class="telefono">
+      <span class="vivo">HISTORIA REAL</span>
+      <video class="con-sonido" autoplay muted loop playsinline preload="metadata" poster="img/cat/historia-sami-poster.jpg" aria-label="Video: la historia del cuadro de Sami, de recién nacida hasta hoy"><source src="video/historia-sami.mp4" type="video/mp4"></video>
+      <button class="sonido" type="button" aria-label="Activar sonido"><span class="ondas" aria-hidden="true"><i></i><i></i><i></i></span><b>Activar sonido</b></button>
+    </div>
+    <div>
+      <span class="kicker" style="color:var(--celeste-hondo)">Historias reales</span>
+      <h3>La historia<br><span class="serif" style="color:var(--celeste-hondo)">de Sami.</span></h3>
+      <p>De recién nacida a hoy: su mamá cuenta, con sus palabras, por qué quiso guardar sus manitos y piecitos en yeso. Activá el sonido y escuchala.</p>
+      <p class="cita-h">Hoy Sami se sienta al lado de su cuadro… y se ve cuánto creció 🤍</p>
     </div>
   </div>
 </section>
@@ -821,7 +852,8 @@ header>*{pointer-events:auto}
     <div class="toma sube">
       <div class="telefono">
         <span class="vivo">EN ACCIÓN</span>
-        <video autoplay muted loop playsinline preload="metadata" poster="img/cat/toma-maldonado-poster.jpg" aria-label="Tathiana tomando el molde de la manito de un bebé en Maldonado"><source src="video/toma-maldonado.mp4" type="video/mp4"></video>
+        <video class="con-sonido" autoplay muted loop playsinline preload="metadata" poster="img/cat/toma-maldonado-poster.jpg" aria-label="Tathiana tomando el molde de la manito de un bebé en Maldonado"><source src="video/toma-maldonado.mp4" type="video/mp4"></video>
+        <button class="sonido" type="button" aria-label="Activar sonido"><span class="ondas" aria-hidden="true"><i></i><i></i><i></i></span><b>Activar sonido</b></button>
       </div>
       <div>
         <span class="kicker" style="color:var(--celeste-hondo)">Así es la toma</span>
@@ -1193,8 +1225,19 @@ addEventListener('hashchange', ir);
 ir();
 
 /* videos: se reproducen solo cuando están a la vista */
-const ioV = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting && !calmo) v.play().catch(() => {}); else v.pause(); }), { threshold: .25 });
+const ioV = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting && !calmo) v.play().catch(() => {}); else { v.pause(); if (!v.muted) { v.muted = true; const b = v.parentElement.querySelector('.sonido'); if (b) { b.classList.remove('on'); b.querySelector('b').textContent = 'Activar sonido'; } } } }), { threshold: .25 });
 document.querySelectorAll('video').forEach(v => ioV.observe(v));
+
+/* botón de sonido: un video con audio a la vez */
+document.querySelectorAll('.sonido').forEach(btn => {
+  const v = btn.parentElement.querySelector('video');
+  btn.addEventListener('click', () => {
+    const activar = v.muted;
+    document.querySelectorAll('video.con-sonido').forEach(o => { o.muted = true; });
+    document.querySelectorAll('.sonido').forEach(b => { b.classList.remove('on'); b.querySelector('b').textContent = 'Activar sonido'; });
+    if (activar) { v.muted = false; v.currentTime = 0; v.play().catch(() => {}); btn.classList.add('on'); btn.querySelector('b').textContent = 'Silenciar'; }
+  });
+});
 
 /* configurador */
 const estado = { quien: 'Bebé', acabado: 'Dorado', color: '#C9A25A' };
