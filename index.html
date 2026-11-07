@@ -207,6 +207,27 @@ header>*{pointer-events:auto}
 .desde{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--tinta);color:var(--yeso);padding:.5rem 1rem;border-radius:999px;font-size:.95rem;font-weight:700}
 .desde em{font-style:normal;color:var(--oro)}
 
+
+/* ---------- esculturas 3D ---------- */
+.escul{margin-top:70px;background:var(--tinta);color:var(--yeso);border-radius:32px;display:grid;grid-template-columns:1fr 1.15fr;overflow:hidden}
+.visor{position:relative;min-height:620px;background:#0f181f}
+.visor img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .8s ease,transform 5s ease}
+.visor img.on{opacity:1;transform:scale(1)}
+.visor .cap{position:absolute;left:18px;bottom:18px;z-index:2;background:rgba(255,253,249,.94);color:var(--tinta);padding:.45rem .95rem;border-radius:999px;font-size:.85rem;font-weight:700;transition:opacity .3s}
+.lista{padding:clamp(28px,4vw,52px)}
+.lista h3{font-size:clamp(2.4rem,4.6vw,4rem);font-weight:800;letter-spacing:-.05em;line-height:.9;margin:12px 0 14px}
+.lista .bajada-e{color:#AFC0CB;font-size:1.05rem;line-height:1.45;max-width:40ch;margin-bottom:26px}
+.grupo{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--oro);margin:26px 0 4px}
+.fila-e{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 4px;border-top:1px solid rgba(255,255,255,.13);font-size:1.18rem;font-weight:500;transition:padding .3s cubic-bezier(.2,.8,.2,1),color .3s}
+.fila-e .pe{font-weight:800;font-size:1.8rem;letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.fila-e .pe small{font-size:.5em;vertical-align:.7em;margin-right:1px}
+.fila-e .ir{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--wa);color:#063b1b;opacity:0;transform:scale(.6) rotate(-30deg);transition:all .3s;flex:none}
+.fila-e .ir svg{width:18px;height:18px;fill:currentColor}
+.fila-e .der{display:flex;align-items:center;gap:12px}
+.fila-e:hover,.fila-e:focus-visible{padding-left:16px;color:var(--oro-claro,#E9CF8F);outline:none}
+.fila-e:hover .ir,.fila-e:focus-visible .ir{opacity:1;transform:none}
+@media(max-width:860px){.escul{grid-template-columns:1fr}.visor{min-height:0;aspect-ratio:4/5}.fila-e .ir{opacity:1;transform:none}.fila-e{font-size:1.05rem}.fila-e .pe{font-size:1.5rem}}
+
 /* ---------- para quién ---------- */
 .quien{padding:140px 0 120px}
 .quien h2,.proceso h2,.voces h2,.faq h2{font-size:clamp(2.6rem,6.4vw,6rem);font-weight:800;letter-spacing:-.05em;line-height:.88;margin:16px 0 60px}
@@ -461,8 +482,10 @@ header>*{pointer-events:auto}
       </article>
 
       <article class="prod sube" data-k="1">
-        <div class="slides"><span class="etq">Paulina</span>
+        <div class="slides"><span class="etq">Paulina · piezas en blanco</span>
           <img src="img/cat/paulina.jpg" alt="Cuadro de Paulina con piecito y manito dorados y un osito" loading="lazy">
+          <img src="img/cat/punitos-blanco.jpg" alt="Dos puñitos de bebé en yeso blanco" loading="lazy">
+          <img src="img/cat/pie-puno-blanco.jpg" alt="Piecito y puñito de bebé en yeso blanco" loading="lazy">
         </div>
         <div class="info"><h3 data-t>2 piezas</h3><p class="sub" data-s></p>
           <div class="fila"><span class="precio"><small>$</small><b data-p>0</b></span><a class="lo-quiero" data-wa href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Lo quiero</a></div></div>
@@ -500,6 +523,30 @@ header>*{pointer-events:auto}
       </article>
     </div>
 
+    <div class="escul sube" id="esculturas">
+      <div class="visor" id="visor">
+        <img class="on" src="img/cat/esc-adulto-bebe.jpg" alt="Escultura blanca de una mano adulta sosteniendo la manito de un bebé" data-cap="Adulto + bebé" loading="lazy">
+        <img src="img/cat/esc-familia-oro.jpg" alt="Escultura dorada de dos manos adultas y la manito de un bebé" data-cap="2 adultos y bebé" loading="lazy">
+        <img src="img/cat/esc-pareja-anillos.jpg" alt="Escultura blanca de dos manos adultas entrelazadas con anillos" data-cap="2 manos adultas" loading="lazy">
+        <img src="img/cat/esc-familia-anillo.jpg" alt="Escultura dorada de manos de pareja con anillo y manito de bebé" data-cap="2 adultos y bebé" loading="lazy">
+        <img src="img/cat/esc-mano-pie-madera.jpg" alt="Mano adulta dorada sosteniendo un piecito sobre base de madera" data-cap="Adulto + bebé" loading="lazy">
+        <span class="cap" id="visor-cap">Adulto + bebé</span>
+      </div>
+      <div class="lista">
+        <span class="kicker" style="color:var(--celeste)">Esculturas en 3D</span>
+        <h3>Manos que se<br><span class="serif" style="color:var(--oro)">toman para siempre.</span></h3>
+        <p class="bajada-e">Las manos de la familia unidas en una sola escultura: la de mamá o papá con la de su bebé, la pareja, o los tres juntos.</p>
+        <div class="grupo">Dúos</div>
+        <a class="fila-e" data-img="0" data-nombre="Mano adulto + mano bebé" data-p="4500" target="_blank" rel="noopener"><span>Mano adulto + mano bebé</span><span class="der"><span class="pe"><small>$</small>4.500</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-nombre="Mano adulto + mano niño" data-p="5500" target="_blank" rel="noopener"><span>Mano adulto + mano niño</span><span class="der"><span class="pe"><small>$</small>5.500</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-img="2" data-nombre="2 manos adultas" data-p="5900" target="_blank" rel="noopener"><span>2 manos adultas</span><span class="der"><span class="pe"><small>$</small>5.900</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
+        <div class="grupo">✦ Familia de 3 manos</div>
+        <a class="fila-e" data-img="1" data-nombre="2 adultos y bebé" data-p="6500" target="_blank" rel="noopener"><span>2 adultos y bebé</span><span class="der"><span class="pe"><small>$</small>6.500</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-nombre="2 adultos y niño" data-p="6990" target="_blank" rel="noopener"><span>2 adultos y niño</span><span class="der"><span class="pe"><small>$</small>6.990</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-nombre="3 manos de mayores de 13 años" data-p="7500" target="_blank" rel="noopener"><span>3 manos, +13 años</span><span class="der"><span class="pe"><small>$</small>7.500</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
+      </div>
+    </div>
+
     <div class="extras">
       <div class="extra sube"><b>⏱</b><strong>Toma de 15–20 min</strong><p>Rápida, sencilla y segura.</p></div>
       <div class="extra sube"><b>📅</b><strong>Listo en ~1 semana</strong><p>Aproximadamente 5 días o una semana.</p></div>
@@ -507,7 +554,7 @@ header>*{pointer-events:auto}
       <div class="extra sube"><b>🎨</b><strong>Todo personalizado</strong><p>Nombre, colores, marco, accesorios y diseño.</p></div>
       <div class="extra sube"><b>🛡</b><strong>Materiales seguros</strong><p>Profesionales y de alta calidad.</p></div>
     </div>
-    <p class="nota-cat">Precios en pesos uruguayos. ¿Adultos, parejas o mascotas? <a href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20consultar%20precio%20para%20adultos%20o%20mascotas%20%F0%9F%A4%8D" target="_blank" rel="noopener">Consultanos el precio por WhatsApp</a>.</p>
+    <p class="nota-cat">Precios en pesos uruguayos. ¿Mascotas? <a href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20consultar%20precio%20para%20mascotas%20%F0%9F%A4%8D" target="_blank" rel="noopener">Consultanos el precio por WhatsApp</a>.</p>
   </div>
 </section>
 
@@ -595,11 +642,11 @@ header>*{pointer-events:auto}
     <details><summary>¿Dónde se hace la sesión? <i>+</i></summary><p>En nuestro salón de Punta Carretas, o vamos a tu casa si estás en una zona cercana (con costo adicional). También trabajamos en Maldonado.</p></details>
     <details><summary>¿Hacen huellas de mascotas? <i>+</i></summary><p>¡Sí! Bebés, niños, parejas, familias y también las huellitas de tu mascota.</p></details>
     <details><summary>¿Qué terminaciones hay? <i>+</i></summary><p>Blanco yeso natural, dorado y bronce. Podés sumar su nombre en letras y una foto dentro del cuadro.</p></details>
-    <details><summary>¿Cuánto cuesta? <i>+</i></summary><p>Desde $3.450 una pieza para bebés de 0 a 11 meses. El precio depende de la edad y de cuántas piezas lleva el cuadro: <a href="#precios" style="text-decoration:underline">mirá el catálogo completo</a>. El cuadro para hermanos tiene precio único de $5.590.</p></details>
+    <details><summary>¿Cuánto cuesta? <i>+</i></summary><p>Desde $3.450 una pieza para bebés de 0 a 11 meses. El precio depende de la edad y de cuántas piezas lleva el cuadro: <a href="#precios" style="text-decoration:underline">mirá el catálogo completo</a>. El cuadro para hermanos tiene precio único de $5.590 y las esculturas de manos en familia van desde $4.500.</p></details>
     <details><summary>¿Cuánto dura la toma? <i>+</i></summary><p>Entre 15 y 20 minutos. Es rápida, sencilla y segura, con materiales profesionales.</p></details>
     <details><summary>¿Cuándo está listo el cuadro? <i>+</i></summary><p>En aproximadamente 5 días o una semana.</p></details>
     <details><summary>¿Tengo que decidir el diseño antes? <i>+</i></summary><p>No. El día de la toma te mostramos todas las opciones para que elijas lo que más te guste: nombre, colores, marco, accesorios y diseño.</p></details>
-    <!-- PARA COMPLETAR CON TATHIANA: formas de pago, gift cards, precios de adultos y mascotas -->
+    <!-- PARA COMPLETAR CON TATHIANA: formas de pago, gift cards, precios de mascotas -->
   </div>
 </section>
 
@@ -795,6 +842,18 @@ document.querySelectorAll('.slides').forEach((sl, n) => {
     i = (i + 1) % imgs.length; imgs[i].classList.add('on'); pts.children[i].classList.add('on'); };
   if (!calmo) setTimeout(() => setInterval(pasar, 3400), n * 700);
   sl.addEventListener('click', pasar);
+});
+
+/* esculturas: la foto sigue al precio */
+const visor = document.getElementById('visor'), vImgs = [...visor.querySelectorAll('img')], vCap = document.getElementById('visor-cap');
+let vi = 0, vPausa = false;
+function verFoto(i) { if (i === vi) return; vImgs[vi].classList.remove('on'); vi = i; vImgs[vi].classList.add('on'); vCap.textContent = vImgs[vi].dataset.cap; }
+if (!calmo) setInterval(() => { if (!vPausa) verFoto((vi + 1) % vImgs.length); }, 3200);
+document.querySelectorAll('.fila-e').forEach(a => {
+  a.href = WA + encodeURIComponent(`Hola Huellas! 🤍 Me interesa la escultura 3D: ${a.dataset.nombre} — $${fmtP.format(+a.dataset.p)}. ¿Qué días tenés disponibles?`);
+  const entrar = () => { vPausa = true; if (a.dataset.img) verFoto(+a.dataset.img); };
+  a.addEventListener('mouseenter', entrar); a.addEventListener('focus', entrar);
+  a.addEventListener('mouseleave', () => vPausa = false); a.addEventListener('blur', () => vPausa = false);
 });
 
 /* configurador */
