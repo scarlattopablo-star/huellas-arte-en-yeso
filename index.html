@@ -472,17 +472,16 @@ header>*{pointer-events:auto}
 .btn svg{width:22px;height:22px;fill:currentColor}
 .btn-negro{background:var(--tinta);color:#fff}
 .btn-wa{background:var(--wa);color:#063b1b}
-.cuadro{background:#fff;aspect-ratio:4/5;border-radius:4px;padding:8%;box-shadow:0 50px 80px -30px rgba(10,40,60,.6),inset 0 0 0 16px #F1EEE8,inset 0 0 0 17px #E2DED6;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;transform:rotate(2deg);transition:transform .5s}
-.cuadro:hover{transform:rotate(0) scale(1.02)}
-.cuadro .letras{display:flex;gap:6px;min-height:42px;flex-wrap:wrap;justify-content:center}
-.cuadro .letras span{width:34px;height:42px;display:grid;place-items:center;font-weight:800;font-size:1.3rem;color:#5b4520;background:var(--acab,var(--oro-grad));border-radius:4px;box-shadow:0 4px 8px -3px rgba(0,0,0,.35);animation:cae .45s cubic-bezier(.3,1.6,.5,1) both}
+.vista-arma{position:relative;margin:0;transform:rotate(2deg);transition:transform .5s}
+.vista-arma:hover{transform:rotate(0) scale(1.02)}
+.va-fotos{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:#F4F1EB;box-shadow:0 50px 80px -30px rgba(10,40,60,.6)}
+.va-fotos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity .6s ease,transform 4s ease}
+.va-fotos img.on{opacity:1;transform:scale(1)}
+.va-cap{position:absolute;left:16px;top:16px;background:rgba(255,253,249,.95);color:var(--tinta);padding:.45rem .95rem;border-radius:999px;font-size:.85rem;font-weight:700;box-shadow:0 6px 16px -6px rgba(0,0,0,.3)}
+.vista-arma .letras{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);display:flex;gap:5px;flex-wrap:wrap;justify-content:center;width:max-content;max-width:94%;padding:10px 14px;background:#fff;border-radius:14px;box-shadow:0 14px 30px -12px rgba(10,40,60,.5)}
+.vista-arma .letras span{width:30px;height:38px;display:grid;place-items:center;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.25rem;color:#5b4520;background:var(--acab,var(--oro-grad));border-radius:4px;box-shadow:0 4px 8px -3px rgba(0,0,0,.35);animation:cae .45s cubic-bezier(.3,1.6,.5,1) both}
 @keyframes cae{from{transform:translateY(-30px) rotate(-15deg);opacity:0}}
-.cuadro .yesos{display:flex;gap:10%;width:100%;justify-content:center}
-.cuadro .yeso{width:30%;aspect-ratio:3/4;background:#F4F1EB;border-radius:6px;display:grid;place-items:center;box-shadow:inset 0 2px 8px rgba(0,0,0,.12)}
-.cuadro .yeso svg{width:70%;transition:color .5s,filter .5s}
-.cuadro .ft{width:62%;aspect-ratio:16/9;border-radius:3px;overflow:hidden}
-.cuadro .ft img{width:100%;height:100%;object-fit:cover}
-@media(max-width:820px){.arma-grid{grid-template-columns:1fr}}
+@media(max-width:820px){.arma-grid{grid-template-columns:1fr}.arma-grid{gap:0}.arma-grid>div:first-child{display:contents}.arma .campo,#enviar{order:1}#enviar{justify-self:start}.vista-arma{margin:0 6px 44px}.va-fotos{aspect-ratio:1/1}.vista-arma .letras span{width:24px;height:31px;font-size:1rem}}
 
 /* ---------- prueba social ---------- */
 .voces{padding:130px 0}
@@ -958,14 +957,11 @@ header>*{pointer-events:auto}
       <div class="campo"><span>Nombre</span><input id="nombre" maxlength="10" placeholder="Escribilo acá" autocomplete="off"></div>
       <a id="enviar" class="btn btn-negro" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Quiero este cuadro</a>
     </div>
-    <div class="cuadro" aria-hidden="true">
-      <div class="letras" id="letras"></div>
-      <div class="yesos">
-        <div class="yeso"><svg id="y1" viewBox="0 0 100 120" style="color:#C9A25A"><use href="#manito"/></svg></div>
-        <div class="yeso"><svg id="y2" viewBox="0 0 22 30" style="color:#C9A25A;width:52%"><use href="#pie"/></svg></div>
-      </div>
-      <div class="ft"><img src="img/p1.jpg" alt=""></div>
-    </div>
+    <figure class="vista-arma" id="vista-arma">
+      <div class="va-fotos" id="va-fotos"></div>
+      <figcaption class="va-cap" id="va-cap"></figcaption>
+      <div class="letras" id="letras" aria-label="Así se vería el nombre"></div>
+    </figure>
   </div>
 </section>
 <nav class="navpie"><div class="wrap">
@@ -1287,19 +1283,46 @@ document.querySelectorAll('.sonido').forEach(btn => {
 });
 
 /* configurador */
-const estado = { quien: 'Bebé', acabado: 'Dorado', color: '#C9A25A' };
+const estado = { quien: 'Bebé', acabado: 'Dorado', color: '#C9A25A', ver: 'quien' };
 const nombre = document.getElementById('nombre'), letras = document.getElementById('letras'), enviar = document.getElementById('enviar');
+const vaFotos = document.getElementById('va-fotos'), vaCap = document.getElementById('va-cap');
 const grad = { '#C9A25A': 'var(--oro-grad)', '#A2643C': 'linear-gradient(120deg,#E0A579,#A2643C 50%,#6E3B20)', '#E9E4DA': '#F1EDE5' };
+/* qué foto muestra la vista según lo que se está eligiendo */
+const fotosArma = {
+  'Bebé': [['francisco.jpg', 'Manitos, piecitos y foto'], ['francisco-sin-foto.jpg', 'Manitos y piecitos, sin foto']],
+  'Hermanos': [['hermanos-blanco.jpg', 'Cuadro para hermanos']],
+  'Pareja': [['esc-pareja-anillos.jpg', 'Manos de pareja'], ['esc-pareja-oro.jpg', 'Manos de pareja, en dorado']],
+  'Familia': [['esc-familia-oro.jpg', 'Familia: 2 adultos y bebé'], ['familia-7-manos.jpg', 'Toda la familia']],
+  'Mascota': [['masc-sora.jpg', 'Su patita, con nombre'], ['masc-chica-bulldog.jpg', 'Su patita y tu mano']],
+  acabado: [['colores.jpg', 'Bronce, cobre, blanco y dorados']],
+  nombre: [['alfabeto.jpg', 'Dos estilos de letras en yeso']]
+};
+const vaImgs = {};
+Object.values(fotosArma).flat().forEach(([f, cap]) => {
+  const img = document.createElement('img');
+  img.src = 'img/cat/' + f; img.alt = cap; img.loading = 'lazy';
+  vaFotos.appendChild(img); vaImgs[f] = img;
+});
+let vaLista = [], vaI = 0, vaTimer = null;
+function mostrar(clave) {
+  vaLista = fotosArma[clave]; vaI = 0;
+  pintarFoto(); clearInterval(vaTimer);
+  if (vaLista.length > 1) vaTimer = setInterval(() => { vaI = (vaI + 1) % vaLista.length; pintarFoto(); }, 3200);
+}
+function pintarFoto() {
+  const [f, cap] = vaLista[vaI];
+  Object.entries(vaImgs).forEach(([k, img]) => img.classList.toggle('on', k === f));
+  vaCap.textContent = cap;
+}
 let ultimoNombre = null;
 function armar() {
-  const n = (nombre.value.trim() || 'Tu bebé'.toUpperCase()).toUpperCase().replace(/\s+/g, ' ');
+  const n = (nombre.value.trim() || 'Su nombre').toUpperCase().replace(/\s+/g, ' ');
   if (n !== ultimoNombre) {
     letras.innerHTML = [...n].map((c, i) => c === ' ' ? '<span style="width:10px;background:none;box-shadow:none"></span>' : `<span style="animation-delay:${i * 40}ms">${c}</span>`).join('');
     ultimoNombre = n;
   }
   letras.style.setProperty('--acab', grad[estado.color]);
   letras.querySelectorAll('span').forEach(s => s.style.color = estado.color === '#E9E4DA' ? '#8a8378' : '#5b4520');
-  ['y1', 'y2'].forEach(id => document.getElementById(id).style.color = estado.color);
   const msg = `Hola Huellas! 🤍 Armé mi cuadro en la web:\n• De: ${estado.quien}\n• Terminación: ${estado.acabado}` + (nombre.value.trim() ? `\n• Nombre: ${nombre.value.trim()}` : '') + `\n¿Me pasás precio y disponibilidad?`;
   enviar.href = WA + encodeURIComponent(msg);
 }
@@ -1308,8 +1331,11 @@ document.querySelectorAll('.chips').forEach(g => g.addEventListener('click', e =
   g.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
   estado[g.dataset.campo] = b.textContent;
   if (b.dataset.c) estado.color = b.dataset.c;
+  mostrar(g.dataset.campo === 'quien' ? estado.quien : 'acabado');
   armar();
 }));
+nombre.addEventListener('focus', () => mostrar('nombre'));
+mostrar('Bebé');
 nombre.addEventListener('input', armar); armar();
 
 /* contadores */
