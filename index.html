@@ -484,6 +484,47 @@ header>*{pointer-events:auto}
 @keyframes cae{from{transform:translateY(-30px) rotate(-15deg);opacity:0}}
 @media(max-width:820px){.arma-grid{grid-template-columns:1fr}.arma-grid{gap:0}.arma-grid>div:first-child{display:contents}.arma .campo,#enviar{order:1}#enviar{justify-self:start}.vista-arma{margin:0 6px 44px}.va-fotos{aspect-ratio:1/1}.vista-arma .letras span{width:24px;height:31px;font-size:1rem}}
 
+/* ---------- gift card ---------- */
+.regalo{background:var(--tinta);color:var(--yeso);padding:120px 0;position:relative;overflow:hidden}
+.regalo::before{content:"";position:absolute;width:70vw;height:70vw;max-width:900px;max-height:900px;left:-12vw;top:50%;transform:translateY(-50%);background:radial-gradient(closest-side,rgba(201,162,90,.28),transparent);pointer-events:none}
+.regalo .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,6vw,90px);align-items:center;position:relative}
+.gc-escena{perspective:1200px}
+.gc{position:relative;display:block;border-radius:22px;overflow:hidden;transform:rotate(-4deg);box-shadow:0 50px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(233,207,143,.35);transition:transform .5s cubic-bezier(.2,.8,.2,1);animation:gc-flota 6s ease-in-out infinite;will-change:transform}
+.gc{container-type:inline-size;aspect-ratio:3/2;background:linear-gradient(135deg,#FFFDF9,#F1E7D6);color:var(--tinta)}
+.gc-foto{position:absolute;inset:0 0 0 56%;overflow:hidden;border-radius:42cqw 0 0 42cqw/50% 0 0 50%;box-shadow:0 0 0 .7cqw #E9CF8F,0 0 0 1.3cqw rgba(201,162,90,.35)}
+.gc-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:translateY(-4%) scale(1.08)}
+.gc-tx{position:absolute;inset:0 44% 0 0;padding:5.2cqw 0 0 5.6cqw;display:flex;flex-direction:column}
+.gc-marca{display:flex;align-items:center;gap:1.6cqw}
+.gc-marca img{width:8cqw;height:auto}
+.gc-marca b{display:block;font-family:"Urbanist",sans-serif;font-weight:400;font-size:4.4cqw;line-height:1;letter-spacing:-.02em}
+.gc-marca small{display:block;font-size:1.25cqw;font-weight:700;letter-spacing:.3em;color:var(--celeste-hondo);margin-top:.5cqw}
+.gc-k{margin-top:4cqw;font-size:3.1cqw;font-weight:700;letter-spacing:.34em;color:#8C6A2D}
+.gc-t{font-family:"Urbanist",sans-serif;font-weight:300;font-size:8.2cqw;line-height:.9;letter-spacing:-.05em;margin-top:1.4cqw}
+.gc-t .serif{display:block;font-size:.98em;padding-bottom:.08em}
+.gc-para{margin-top:auto;margin-bottom:11.5cqw;display:grid;gap:1.6cqw;font-family:"Caveat";font-size:3.3cqw;color:var(--tinta-2);width:34cqw}
+.gc-para span{display:flex;align-items:baseline;gap:1.2cqw}
+.gc-para span::after{content:"";flex:1;border-bottom:.25cqw dotted #B89A5E}
+.gc-pie{position:absolute;left:0;right:0;bottom:0;background:var(--tinta);color:var(--yeso);display:flex;justify-content:center;gap:3cqw;padding:2cqw 3cqw;font-size:2.05cqw;font-weight:500;white-space:nowrap}
+.gc-pie b{color:#E9CF8F;font-weight:700}
+.gc-sello{position:absolute;left:47%;top:8%;width:19cqw;height:19cqw;border-radius:50%;background:var(--oro-grad);display:grid;place-items:center;box-shadow:0 1.5cqw 3cqw -1cqw rgba(0,0,0,.5);transform:rotate(8deg)}
+.gc-sello svg{position:absolute;inset:0;width:100%;height:100%;animation:gc-gira 18s linear infinite}
+.gc-sello text{font-size:13.5px;font-weight:700;letter-spacing:.2em;fill:#2a1e08}
+.gc-sello i{font-style:normal;font-size:6.4cqw;line-height:1}
+@keyframes gc-gira{to{transform:rotate(360deg)}}
+.gc::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:250% 100%;background-position:120% 0;animation:gc-brillo 5s ease-in-out infinite;pointer-events:none;mix-blend-mode:soft-light}
+.gc-escena .mono{position:absolute;right:14px;top:-52px;font-family:"Caveat";font-size:1.7rem;color:#E9CF8F;transform:rotate(6deg);z-index:2}
+.gc-escena{position:relative}
+@keyframes gc-flota{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@keyframes gc-brillo{0%,55%{background-position:120% 0}100%{background-position:-60% 0}}
+.regalo h2{font-size:clamp(2.8rem,6vw,5.6rem);font-weight:300;letter-spacing:-.05em;line-height:.9;margin:16px 0 22px}
+.regalo p{font-size:1.15rem;line-height:1.55;color:#C7D3DB;max-width:42ch}
+.regalo .pasos{list-style:none;margin:28px 0 34px;display:grid;gap:14px}
+.regalo .pasos li{display:flex;gap:14px;align-items:center;font-size:1.05rem}
+.regalo .pasos b{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--oro-grad);color:#2a1e08;font-size:.9rem}
+.regalo .ideal{margin-top:20px;font-family:"Caveat";font-size:1.5rem;color:#E9CF8F}
+@media(max-width:860px){.regalo{padding:90px 0}.regalo .wrap{grid-template-columns:1fr;gap:46px}.gc{transform:rotate(-3deg)}.gc-escena{margin:0 6px}}
+@media(prefers-reduced-motion:reduce){.gc,.gc::after,.gc-sello svg{animation:none}}
+
 /* ---------- prueba social ---------- */
 .voces{padding:130px 0}
 .cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:80px}
@@ -598,6 +639,38 @@ header>*{pointer-events:auto}
       <a class="tile sube" href="#/como"><video autoplay muted loop playsinline preload="metadata" poster="img/cat/toma-maldonado-poster.jpg" aria-hidden="true"><source src="video/toma-maldonado.mp4" type="video/mp4"></video><span class="n">04</span><span class="tx"><b>Cómo es</b><small>Mirá cómo es la toma: 15 minutos, en brazos de mamá</small></span><i>→</i></a>
       <a class="tile t-arma sube" href="#/arma"><span class="n">05</span><span class="tx"><b>Armá el tuyo</b><small>Probá tu cuadro en 10 segundos</small></span><i>→</i></a>
       <a class="tile t-tathi sube" href="#/tathiana"><img src="img/cat/taller-retoque-bebe.jpg" alt="" loading="lazy"><span class="n">06</span><span class="tx"><b>Conocé a Tathiana</b><small>Cada pieza, hecha a mano con amor</small></span><i>→</i></a>
+    </div>
+  </div>
+</section>
+
+<!-- GIFT CARD -->
+<section class="regalo" id="giftcard">
+  <div class="wrap">
+    <div class="gc-escena sube">
+      <span class="mono">para regalar ✦</span>
+      <a class="gc" id="gc" aria-label="Gift Card de Huellas Arte en Yeso: un recuerdo para siempre. Pedila por WhatsApp" href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20regalar%20una%20Gift%20Card%20%F0%9F%8E%81" target="_blank" rel="noopener">
+        <span class="gc-foto"><img src="img/cat/punitos-blanco.jpg" alt="" loading="lazy"></span>
+        <span class="gc-tx">
+          <span class="gc-marca"><img src="img/corazon.png" alt=""><span><b>huellas</b><small>ARTE EN YESO</small></span></span>
+          <span class="gc-k">GIFT CARD</span>
+          <span class="gc-t">Un recuerdo<span class="serif oro-txt">para siempre.</span></span>
+          <span class="gc-para"><span>Para</span><span>De</span></span>
+        </span>
+        <span class="gc-sello" aria-hidden="true"><svg viewBox="0 0 150 150"><defs><path id="circ-gc" d="M75 75m-56 0a56 56 0 1 1 112 0a56 56 0 1 1-112 0"/></defs><text><textPath href="#circ-gc">REGALO ÚNICO ✦ HECHO A MANO ✦ </textPath></text></svg><i>🎁</i></span>
+        <span class="gc-pie"><span><b>WhatsApp</b> 096 303 052</span><span>@huellas.arte.en.yeso</span><span>Punta Carretas</span></span>
+      </a>
+    </div>
+    <div class="sube">
+      <span class="kicker" style="color:#E9CF8F">Gift Card</span>
+      <h2>Regalá<br><span class="serif oro-txt">una huella.</span></h2>
+      <p>Hay regalos que se olvidan… y otros que se convierten en parte de vos. Con la Gift Card de Huellas regalás una escultura en yeso, y quien la recibe elige cuándo hacerla.</p>
+      <ol class="pasos">
+        <li><b>1</b>Nos escribís por WhatsApp y elegís qué regalar.</li>
+        <li><b>2</b>Te damos la Gift Card para entregar.</li>
+        <li><b>3</b>Quien la recibe nos contacta y coordina su toma.</li>
+      </ol>
+      <a class="btn btn-wa" href="https://wa.me/59896303052?text=Hola%20Huellas!%20Quiero%20regalar%20una%20Gift%20Card%20%F0%9F%8E%81" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Quiero regalar una Gift Card</a>
+      <div class="ideal">Ideal para nacimientos, baby showers y cumpleaños 🤍</div>
     </div>
   </div>
 </section>
@@ -1376,6 +1449,13 @@ if (!calmo) {
     iman.style.transform = `translate(${(e.clientX - b.left - b.width / 2) * .35}px, ${(e.clientY - b.top - b.height / 2) * .35}px)`; });
   iman.addEventListener('mouseleave', () => iman.style.transform = '');
   iman.style.transition = 'transform .25s ease-out';
+}
+// gift card: se inclina siguiendo el mouse
+const gc = document.getElementById('gc');
+if (gc && !calmo && matchMedia('(hover:hover)').matches) {
+  gc.addEventListener('mousemove', e => { const b = gc.getBoundingClientRect();
+    gc.style.transform = `rotateY(${((e.clientX - b.left) / b.width - .5) * 16}deg) rotateX(${(.5 - (e.clientY - b.top) / b.height) * 14}deg) scale(1.03)`; });
+  gc.addEventListener('mouseleave', () => gc.style.transform = '');
 }
 </script>
 </body>
