@@ -677,20 +677,25 @@ header>*{pointer-events:auto}
       </article>
 
       <article class="prod sube" data-k="1">
-        <div class="slides"><span class="etq">Paulina · Olivia</span>
+        <div class="slides"><span class="etq">Paulina · Olivia · Joaquín · Vito · Isabel</span>
           <img src="img/cat/paulina.jpg" alt="Cuadro de Paulina con piecito y manito dorados y un osito" loading="lazy">
           <img src="img/cat/olivia-lino.jpg" alt="Cuadro de lino de Olivia con dos piecitos dorados y una pluma" loading="lazy">
-          <img src="img/cat/punitos-blanco.jpg" alt="Dos puñitos de bebé en yeso blanco" loading="lazy">
-          <img src="img/cat/pie-puno-blanco.jpg" alt="Piecito y puñito de bebé en yeso blanco" loading="lazy">
+          <img src="img/cat/joaquin.jpg" alt="Cuadro de madera de Joaquín con piecito y manito en cobre y una pluma" loading="lazy">
+          <img src="img/cat/vito.jpg" alt="Cuadro de lino de Vito con puñito y piecito en cobre" loading="lazy">
+          <img src="img/cat/isabel-sofia.jpg" alt="Cuadro de lino de Isabel Sofía con piecito y manito dorados y una jirafita" loading="lazy">
+          <img src="img/cat/antonella.jpg" alt="Cuadro de Antonella con piecito y manito dorados" loading="lazy">
+          <img src="img/cat/milu-cobre.jpg" alt="Cuadro de Milu con mano y pie de niña en cobre, al lado de una mano adulta" loading="lazy" data-grande>
         </div>
         <div class="info"><h3 data-t>2 piezas</h3><p class="sub" data-s></p>
           <div class="fila"><span class="precio"><small>$</small><b data-p>0</b></span><a class="lo-quiero" data-wa href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Lo quiero</a></div></div>
       </article>
 
       <article class="prod sube" data-k="2">
-        <div class="slides"><span class="etq">Mateo · Pauli</span>
+        <div class="slides"><span class="etq">Mateo · Pauli · Mía · Ahina</span>
           <img src="img/cat/mateo.jpg" alt="Cuadro de Mateo con foto, manito y piecito dorados" loading="lazy">
           <img src="img/cat/pauli.jpg" alt="Cuadro de Pauli con foto, piecito y manito dorados y un osito" loading="lazy">
+          <img src="img/cat/mia.jpg" alt="Cuadro de Mía con foto, puñito y piecito dorados y una pluma" loading="lazy">
+          <img src="img/cat/ahina.jpg" alt="Cuadro de Ahina con foto, piecito y puñito dorados y un osito" loading="lazy">
         </div>
         <div class="info"><h3 data-t>2 piezas + foto</h3><p class="sub" data-s></p>
           <div class="fila"><span class="precio"><small>$</small><b data-p>0</b></span><a class="lo-quiero" data-wa href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Lo quiero</a></div></div>
@@ -698,11 +703,15 @@ header>*{pointer-events:auto}
 
       <article class="prod estrella sube" data-k="3">
         <div class="fuego"><div><span>🔥</span>El más<br>elegido</div></div>
-        <div class="slides"><span class="etq">Francisco · Tomás · Olivia</span>
+        <div class="slides"><span class="etq">Francisco · Tomás · Olivia · Francesca · Mateo</span>
           <img src="img/cat/francisco.jpg" alt="Cuadro de Francisco con dos manitos, dos piecitos en yeso blanco y foto" loading="lazy">
           <img src="img/cat/tomas.jpg" alt="Cuadro de Tomás con dos puñitos, dos piecitos dorados y dos fotos" loading="lazy">
           <img src="img/cat/olivia-cobre.jpg" alt="Cuadro de Olivia en cobre con cuatro piezas y dos fotos" loading="lazy">
           <img src="img/cat/olivia-dorado.jpg" alt="Cuadro de Olivia con puñitos y piecitos dorados y foto" loading="lazy">
+          <img src="img/cat/francesca.jpg" alt="Cuadro de Francesca con dos fotos, puñitos y piecitos dorados" loading="lazy">
+          <img src="img/cat/mateo-4.jpg" alt="Cuadro de Mateo con dos fotos, manitos y piecitos dorados" loading="lazy">
+          <img src="img/cat/olivia-cobre2.jpg" alt="Cuadro de Olivia en cobre con manitos, piecitos y dos fotos" loading="lazy">
+          <img src="img/cat/francisco-recien.jpg" alt="Cuadro blanco de Francisco recién nacido con manitos, piecitos y foto" loading="lazy">
         </div>
         <div class="info"><span class="kicker" style="color:var(--oro)">El cuadro completo</span><h3 data-t>4 piezas + foto</h3><p class="sub" data-s></p>
           <div class="fila"><span class="precio"><small>$</small><b data-p>0</b></span><a class="lo-quiero" data-wa href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Lo quiero</a></div></div>
@@ -1164,6 +1173,8 @@ function elegirEdad(i) {
   });
   document.querySelectorAll('#edades button').forEach(b => b.setAttribute('aria-selected', +b.dataset.i === i));
   moverInd();
+  /* si no es bebé, se muestra primero la foto de un cuadro de niño más grande */
+  if (i > 0) document.querySelectorAll('.slides img[data-grande]').forEach(img => img.parentElement.ir?.(img));
 }
 function moverInd() {
   const b = document.querySelector('#edades button[aria-selected="true"]'), ind = document.getElementById('ind');
@@ -1183,9 +1194,13 @@ document.querySelectorAll('.slides').forEach((sl, n) => {
   const pts = document.createElement('div'); pts.className = 'puntos';
   pts.innerHTML = imgs.map((_, i) => `<i class="${i ? '' : 'on'}"></i>`).join(''); sl.appendChild(pts);
   let i = 0;
-  const pasar = () => { imgs[i].classList.remove('on'); pts.children[i].classList.remove('on');
-    i = (i + 1) % imgs.length; imgs[i].classList.add('on'); pts.children[i].classList.add('on'); };
-  if (!calmo) setTimeout(() => setInterval(pasar, 3400), n * 700);
+  const ir = j => { imgs[i].classList.remove('on'); pts.children[i].classList.remove('on');
+    i = j; imgs[i].classList.add('on'); pts.children[i].classList.add('on'); };
+  const pasar = () => ir((i + 1) % imgs.length);
+  let reloj = null;
+  const arrancar = () => { clearInterval(reloj); if (!calmo) reloj = setInterval(pasar, 3400); };
+  sl.ir = img => { ir(imgs.indexOf(img)); arrancar(); };
+  setTimeout(arrancar, n * 700);
   sl.addEventListener('click', pasar);
 });
 
