@@ -1245,6 +1245,8 @@ function elegirEdad(i) {
   const tit = CAT.titulos(i), sub = CAT.subs(i);
   prods.forEach(p => {
     const k = +p.dataset.k, precio = CAT.precios[i][k];
+    /* el cuadro de 4 piezas solo se ofrece hasta los 3 años */
+    p.style.display = k === 3 && i >= 2 ? 'none' : '';
     p.querySelector('[data-t]').textContent = tit[k];
     p.querySelector('[data-s]').textContent = sub[k];
     contarPrecio(p.querySelector('[data-p]'), precio);
