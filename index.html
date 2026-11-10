@@ -224,10 +224,13 @@ header>*{pointer-events:auto}
 .fila-e{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 4px;border-top:1px solid rgba(255,255,255,.13);font-size:1.18rem;font-weight:500;transition:padding .3s cubic-bezier(.2,.8,.2,1),color .3s}
 .fila-e .pe{font-weight:800;font-size:1.8rem;letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .fila-e .pe small{font-size:.5em;vertical-align:.7em;margin-right:1px}
-.fila-e .ir{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--wa);color:#063b1b;opacity:0;transform:scale(.6) rotate(-30deg);transition:all .3s;flex:none}
+.fila-e .ir{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--wa);color:#063b1b;transition:transform .3s;flex:none}
+.fila-e .ir:hover{transform:scale(1.15)}
 .fila-e .ir svg{width:18px;height:18px;fill:currentColor}
 .fila-e .der{display:flex;align-items:center;gap:12px}
-.fila-e:hover,.fila-e:focus-visible{padding-left:16px;color:var(--oro-claro,#E9CF8F);outline:none}
+.fila-e{cursor:pointer}
+.fila-e:hover,.fila-e:focus-visible,.fila-e.sel{padding-left:16px;color:var(--oro-claro,#E9CF8F);outline:none}
+.fila-e.sel .ir{opacity:1;transform:none}
 .fila-e:hover .ir,.fila-e:focus-visible .ir{opacity:1;transform:none}
 @media(max-width:860px){.escul{grid-template-columns:1fr}.visor{min-height:0;aspect-ratio:4/5}.fila-e .ir{opacity:1;transform:none}.fila-e{font-size:1.05rem}.fila-e .pe{font-size:1.5rem}}
 
@@ -860,13 +863,13 @@ header>*{pointer-events:auto}
         <h3>Manos que se<br><span class="serif" style="color:var(--oro)">toman para siempre.</span></h3>
         <p class="bajada-e">Las manos de la familia unidas en una sola escultura: la de mamá o papá con la de su bebé, la pareja, o los tres juntos.</p>
         <div class="grupo">Dúos</div>
-        <a class="fila-e" data-img="0" data-nombre="Mano adulto + mano bebé" data-p="4500" target="_blank" rel="noopener"><span>Mano adulto + mano bebé</span><span class="der"><span class="pe"><small>$</small>4.500</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
-        <a class="fila-e" data-img="5" data-nombre="Mano adulto + mano niño" data-p="5500" target="_blank" rel="noopener"><span>Mano adulto + mano niño</span><span class="der"><span class="pe"><small>$</small>5.500</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
-        <a class="fila-e" data-img="2" data-nombre="2 manos adultas" data-p="5900" target="_blank" rel="noopener"><span>2 manos adultas</span><span class="der"><span class="pe"><small>$</small>5.900</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-g="Adulto + bebé" data-nombre="Mano adulto + mano bebé" data-p="4500" target="_blank" rel="noopener"><span>Mano adulto + mano bebé</span><span class="der"><span class="pe"><small>$</small>4.500</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-g="Adulto + niño" data-nombre="Mano adulto + mano niño" data-p="5500" target="_blank" rel="noopener"><span>Mano adulto + mano niño</span><span class="der"><span class="pe"><small>$</small>5.500</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-g="2 manos adultas" data-nombre="2 manos adultas" data-p="5900" target="_blank" rel="noopener"><span>2 manos adultas</span><span class="der"><span class="pe"><small>$</small>5.900</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
         <div class="grupo">✦ Familia de 3 manos</div>
-        <a class="fila-e" data-img="1" data-nombre="2 adultos y bebé" data-p="6500" target="_blank" rel="noopener"><span>2 adultos y bebé</span><span class="der"><span class="pe"><small>$</small>6.500</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
-        <a class="fila-e" data-nombre="2 adultos y niño" data-p="6990" target="_blank" rel="noopener"><span>2 adultos y niño</span><span class="der"><span class="pe"><small>$</small>6.990</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
-        <a class="fila-e" data-nombre="3 manos de mayores de 13 años" data-p="7500" target="_blank" rel="noopener"><span>3 manos, +13 años</span><span class="der"><span class="pe"><small>$</small>7.500</span><span class="ir"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-g="2 adultos y bebé" data-nombre="2 adultos y bebé" data-p="6500" target="_blank" rel="noopener"><span>2 adultos y bebé</span><span class="der"><span class="pe"><small>$</small>6.500</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-g="2 adultos y bebé" data-nombre="2 adultos y niño" data-p="6990" target="_blank" rel="noopener"><span>2 adultos y niño</span><span class="der"><span class="pe"><small>$</small>6.990</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-g="2 adultos y bebé" data-nombre="3 manos de mayores de 13 años" data-p="7500" target="_blank" rel="noopener"><span>3 manos, +13 años</span><span class="der"><span class="pe"><small>$</small>7.500</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
       </div>
     </div>
 
@@ -1293,16 +1296,26 @@ document.querySelectorAll('.slides').forEach((sl, n) => {
 });
 document.querySelectorAll('.prod[data-k] .slides').forEach(sl => sl.filtrar(0));
 
-/* esculturas: la foto sigue al precio */
+/* esculturas: al tocar una opción el visor muestra (y sigue pasando) las fotos de esa escultura; solo el ícono verde abre WhatsApp */
 const visor = document.getElementById('visor'), vImgs = [...visor.querySelectorAll('img')], vCap = document.getElementById('visor-cap');
-let vi = 0, vPausa = false;
+let vi = 0, vPausa = false, vGrupo = null;
 function verFoto(i) { if (i === vi) return; vImgs[vi].classList.remove('on'); vi = i; vImgs[vi].classList.add('on'); vCap.textContent = vImgs[vi].dataset.cap; }
-if (!calmo) setInterval(() => { if (!vPausa) verFoto((vi + 1) % vImgs.length); }, 3200);
-document.querySelectorAll('.fila-e').forEach(a => {
+const delGrupo = g => vImgs.map((_, i) => i).filter(i => !g || vImgs[i].dataset.cap === g);
+if (!calmo) setInterval(() => { if (vPausa) return; const l = delGrupo(vGrupo); verFoto(l[(l.indexOf(vi) + 1) % l.length]); }, 3200);
+const filasE = [...document.querySelectorAll('.fila-e')];
+filasE.forEach(a => {
   a.href = WA + encodeURIComponent(`Hola Huellas! 🤍 Me interesa la escultura 3D: ${a.dataset.nombre} — $${fmtP.format(+a.dataset.p)}. ¿Qué días tenés disponibles?`);
-  const entrar = () => { vPausa = true; if (a.dataset.img) verFoto(+a.dataset.img); };
+  const entrar = () => { vPausa = true; verFoto(delGrupo(a.dataset.g)[0]); };
   a.addEventListener('mouseenter', entrar); a.addEventListener('focus', entrar);
   a.addEventListener('mouseleave', () => vPausa = false); a.addEventListener('blur', () => vPausa = false);
+  a.addEventListener('click', e => {
+    if (e.target.closest('.ir')) return;
+    e.preventDefault();
+    vGrupo = a.dataset.g; filasE.forEach(f => f.classList.toggle('sel', f === a));
+    verFoto(delGrupo(vGrupo)[0]); vPausa = false;
+    const r = visor.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > innerHeight) visor.scrollIntoView({ behavior: calmo ? 'auto' : 'smooth', block: 'center' });
+  });
 });
 
 /* mascotas por tamaño */
