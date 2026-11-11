@@ -135,15 +135,14 @@ header>*{pointer-events:auto}
 .horiz h2{font-size:clamp(2.4rem,6vw,5.4rem);font-weight:300;letter-spacing:-.045em;line-height:.9}
 .contador{font-size:1rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--tinta-2)}
 .track{display:flex;gap:3vw;padding-left:4vw;will-change:transform}
-.pieza-g{flex:none;width:clamp(220px,min(34vw,(100svh - 330px) * .8),480px);position:relative}
-.pieza-g .foto{aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:#ddd}
-.pieza-g img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 1.2s}
-.pieza-g:hover img{transform:scale(1.02)}
+.pieza-g{--h:clamp(275px,min(42.5vw,100svh - 330px),600px);flex:none;position:relative}
+.pieza-g .foto{height:var(--h);border-radius:22px;overflow:hidden;background:#ddd}
+.pieza-g img{display:block;height:100%;width:auto}
 .pieza-g .nota{position:absolute;right:-10px;bottom:-22px;background:var(--blanco);padding:10px 18px;border-radius:12px;font-family:"Caveat";font-size:1.6rem;box-shadow:0 14px 30px -14px rgba(22,34,43,.4);transform:rotate(-4deg)}
 .pieza-g:nth-child(even){margin-top:5vh}
 .horiz .pin{padding-top:70px}
 .pieza-g:nth-child(even) .nota{transform:rotate(3deg)}
-.pieza-g.final{display:grid;place-items:center;aspect-ratio:4/5;border-radius:22px;background:var(--celeste);color:#fff;text-align:center;padding:30px}
+.pieza-g.final{display:grid;place-items:center;width:calc(var(--h) * .8);height:var(--h);border-radius:22px;background:var(--celeste);color:#fff;text-align:center;padding:30px}
 .pieza-g.final b{display:block;font-size:clamp(2rem,3.4vw,3.2rem);line-height:.95;letter-spacing:-.04em;margin-bottom:20px}
 
 
@@ -933,15 +932,15 @@ header>*{pointer-events:auto}
       <span class="contador" id="cont">01 / 10</span>
     </div>
     <div class="track" id="track">
-      <figure class="pieza-g"><div class="foto"><img src="img/hero-mama.jpg" alt="Mamá con su bebé y el cuadro de Isabella"></div><figcaption class="nota">Isabella 🤍</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/p3.jpg" alt="Cuadro de hermanos con manos doradas"></div><figcaption class="nota">hermanitos, en dorado</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/p1.jpg" alt="Bebé sonriendo con su cuadro"></div><figcaption class="nota">Fausto aprobó ✓</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/p2.jpg" alt="Cuadro blanco de Francisco"></div><figcaption class="nota">blanco yeso natural</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/p4.jpg" alt="Cuadro de Vito frente a la ventana"></div><figcaption class="nota">Vito, con vista</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/cat/familia-7-manos.jpg" alt="Cuadro alargado con siete manos doradas de toda la familia"></div><figcaption class="nota">toda la familia, de mayor a menor</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/cat/fausti.jpg" alt="Manito dorada de Fausti frente a su cuadro"></div><figcaption class="nota">la manito de Fausti</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/cat/emilia.jpg" alt="Puñito dorado de Emilia antes de ir al cuadro"></div><figcaption class="nota">Emilia, casi lista</figcaption></figure>
-      <figure class="pieza-g"><div class="foto"><img src="img/cat/mano-anillo-oro.jpg" alt="Mano adulta dorada con anillo de sello"></div><figcaption class="nota">hasta el anillo ✦</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="640" height="640" src="img/hero-mama.jpg" alt="Mamá con su bebé y el cuadro de Isabella"></div><figcaption class="nota">Isabella 🤍</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="640" height="640" src="img/p3.jpg" alt="Cuadro de hermanos con manos doradas"></div><figcaption class="nota">hermanitos, en dorado</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="640" height="640" src="img/p1.jpg" alt="Bebé sonriendo con su cuadro"></div><figcaption class="nota">Fausto aprobó ✓</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="640" height="640" src="img/p2.jpg" alt="Cuadro blanco de Francisco"></div><figcaption class="nota">blanco yeso natural</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="640" height="640" src="img/p4.jpg" alt="Cuadro de Vito frente a la ventana"></div><figcaption class="nota">Vito, con vista</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="900" height="735" src="img/cat/familia-7-manos.jpg" alt="Cuadro alargado con siete manos doradas de toda la familia"></div><figcaption class="nota">toda la familia, de mayor a menor</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="900" height="1600" src="img/cat/fausti.jpg" alt="Manito dorada de Fausti frente a su cuadro"></div><figcaption class="nota">la manito de Fausti</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="900" height="1600" src="img/cat/emilia.jpg" alt="Puñito dorado de Emilia antes de ir al cuadro"></div><figcaption class="nota">Emilia, casi lista</figcaption></figure>
+      <figure class="pieza-g"><div class="foto"><img width="1200" height="1600" src="img/cat/mano-anillo-oro.jpg" alt="Mano adulta dorada con anillo de sello"></div><figcaption class="nota">hasta el anillo ✦</figcaption></figure>
       <a class="pieza-g final" href="https://www.instagram.com/huellas.arte.en.yeso/" target="_blank" rel="noopener"><div><b>¿El próximo es el tuyo?</b>Ver más en Instagram →</div></a>
     </div>
   </div>
