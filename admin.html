@@ -19,6 +19,11 @@ form{display:grid;gap:12px}
 input{font:inherit;font-size:1.1rem;padding:14px;border:1.5px solid var(--borde);border-radius:12px;background:#fff;width:100%}
 input:focus{outline:none;border-color:var(--oro);box-shadow:0 0 0 3px rgba(201,162,90,.25)}
 button{font:inherit;font-weight:600;font-size:1rem;padding:14px 20px;border-radius:999px;border:0;cursor:pointer;background:var(--tinta);color:var(--yeso)}
+.campo{position:relative}
+.campo input{padding-right:56px}
+.ojo{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:44px;height:44px;padding:0;border-radius:10px;background:none;display:grid;place-items:center;color:#6A7884}
+.ojo svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ojo[aria-pressed="true"] .tacha{display:none}
 .error{color:#B3412F;font-weight:600;min-height:1.4em}
 .herr{display:grid;gap:12px}
 .herr a{display:flex;align-items:center;gap:16px;padding:18px;border-radius:16px;background:#fff;border:1.5px solid var(--borde);color:inherit;text-decoration:none}
@@ -36,7 +41,7 @@ button{font:inherit;font-weight:600;font-size:1rem;padding:14px 20px;border-radi
     <h1>Administración</h1>
     <p>Ingresá la contraseña para usar las herramientas de Huellas.</p>
     <form id="f">
-      <input id="clave" type="password" placeholder="Contraseña" autocomplete="current-password" required>
+      <div class="campo"><input id="clave" type="password" placeholder="Contraseña" autocomplete="current-password" required><button type="button" class="ojo" id="ojo" aria-label="Mostrar contraseña" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/><path class="tacha" d="M3 3l18 18"/></svg></button></div>
       <button>Entrar</button>
       <div class="error" id="err" role="alert"></div>
     </form>
@@ -68,6 +73,8 @@ document.getElementById('f').addEventListener('submit', async e => {
   if (await hash(document.getElementById('clave').value.trim()) === CLAVE) { guardar(true); mostrar(); }
   else document.getElementById('err').textContent = 'Contraseña incorrecta.';
 });
+const ojo = document.getElementById('ojo'), clave = document.getElementById('clave');
+ojo.onclick = () => { const ver = clave.type === 'password'; clave.type = ver ? 'text' : 'password'; ojo.setAttribute('aria-pressed', ver); ojo.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña'); clave.focus(); };
 document.getElementById('salir').onclick = () => { guardar(false); location.replace('admin.html'); };
 if (leer()) mostrar();
 </script>
