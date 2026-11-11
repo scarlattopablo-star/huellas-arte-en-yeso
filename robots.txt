@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin.html
+Disallow: /giftcard.html
+
+Sitemap: https://huellasyeso.uy/sitemap.xml
