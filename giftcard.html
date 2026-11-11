@@ -24,11 +24,13 @@ button{font:inherit;font-weight:600;font-size:1rem;padding:14px 20px;border-radi
 .b1{background:var(--tinta);color:var(--yeso)}
 .b2{background:var(--wa);color:#fff}
 .b3{background:#fff;color:var(--tinta);border:1.5px solid var(--borde)}
+.volver{display:inline-block;margin-bottom:14px;color:#6A7884;text-decoration:none;font-weight:600}
 .nota{margin-top:14px;font-size:.88rem;color:#6A7884}
 </style>
 </head>
 <body>
 <main>
+  <a class="volver" href="admin.html">← Panel</a>
   <h1>Gift Card</h1>
   <p class="bajada">Completá los datos y descargala para mandarla por WhatsApp o mail, o para imprimirla.</p>
   <canvas id="cv" width="1800" height="1200" aria-label="Vista previa de la gift card"></canvas>
@@ -45,6 +47,7 @@ button{font:inherit;font-weight:600;font-size:1rem;padding:14px 20px;border-radi
   <p class="nota">Si dejás un campo vacío, queda la línea en blanco para completarla a mano.</p>
 </main>
 <script>
+try { if (localStorage.getItem('huellas-admin') !== '1') location.replace('admin.html?ir=giftcard'); } catch (e) { location.replace('admin.html?ir=giftcard'); }
 const cv = document.getElementById('cv'), cx = cv.getContext('2d');
 const base = new Image(); base.src = 'img/giftcard-base.jpg';
 /* renglones de la tarjeta: dónde empieza el texto, dónde termina la línea y su altura */
@@ -62,7 +65,7 @@ function dibujar() {
     const w = cx.measureText(t).width;
     /* tapa los puntitos detrás del texto para que se lea limpio */
     const g = cx.createLinearGradient(0, 0, 1800, 1200); g.addColorStop(0, '#FFFDF9'); g.addColorStop(1, '#F1E7D6');
-    cx.fillStyle = g; cx.fillRect(x - 6, y - tam, w + 16, tam + 22);
+    cx.fillStyle = g; cx.fillRect(x - 16, y - tam, w + 16, tam + 22);
     cx.fillStyle = '#16222B'; cx.fillText(t, x + 4, y);
   });
 }
