@@ -867,6 +867,8 @@ header>*{pointer-events:auto}
         <h3>Manos que se<br><span class="serif" style="color:var(--oro)">toman para siempre.</span></h3>
         <p class="bajada-e">Las manos de la familia unidas en una sola escultura: la de mamá o papá con la de su bebé, la pareja, o los tres juntos.</p>
         <div class="grupo">Dúos</div>
+        <a class="fila-e" data-g="2 piezas bebé" data-nombre="2 piezas de bebé" data-p="3550" target="_blank" rel="noopener"><span>2 piezas bebé</span><span class="der"><span class="pe"><small>$</small>3.550</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
+        <a class="fila-e" data-g="2 manos niño" data-nombre="2 manos de niño" data-p="4200" target="_blank" rel="noopener"><span>2 manos niño</span><span class="der"><span class="pe"><small>$</small>4.200</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
         <a class="fila-e" data-g="Adulto + bebé" data-nombre="Mano adulto + mano bebé" data-p="4500" target="_blank" rel="noopener"><span>Mano adulto + mano bebé</span><span class="der"><span class="pe"><small>$</small>4.500</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
         <a class="fila-e" data-g="Adulto + niño" data-nombre="Mano adulto + mano niño" data-p="5500" target="_blank" rel="noopener"><span>Mano adulto + mano niño</span><span class="der"><span class="pe"><small>$</small>5.500</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
         <a class="fila-e" data-g="2 manos adultas" data-nombre="2 manos adultas" data-p="5900" target="_blank" rel="noopener"><span>2 manos adultas</span><span class="der"><span class="pe"><small>$</small>5.900</span><span class="ir" title="Consultar por WhatsApp"><svg><use href="#wa"/></svg></span></span></a>
@@ -1304,7 +1306,7 @@ document.querySelectorAll('.prod[data-k] .slides').forEach(sl => sl.filtrar(0));
 const visor = document.getElementById('visor'), vImgs = [...visor.querySelectorAll('img')], vCap = document.getElementById('visor-cap');
 let vi = 0, vPausa = false, vGrupo = null;
 function verFoto(i) { if (i === vi) return; vImgs[vi].classList.remove('on'); vi = i; vImgs[vi].classList.add('on'); vCap.textContent = vImgs[vi].dataset.cap; }
-const delGrupo = g => vImgs.map((_, i) => i).filter(i => !g || vImgs[i].dataset.cap === g);
+const delGrupo = g => { const t = vImgs.map((_, i) => i), l = t.filter(i => !g || vImgs[i].dataset.cap === g); return l.length ? l : t; };
 if (!calmo) setInterval(() => { if (vPausa) return; const l = delGrupo(vGrupo); verFoto(l[(l.indexOf(vi) + 1) % l.length]); }, 3200);
 const filasE = [...document.querySelectorAll('.fila-e')];
 filasE.forEach(a => {
