@@ -481,6 +481,7 @@ header>*{pointer-events:auto}
 .vista-arma:hover{transform:rotate(0) scale(1.02)}
 .va-fotos{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:#F4F1EB;box-shadow:0 50px 80px -30px rgba(10,40,60,.6)}
 .va-fotos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity .6s ease,transform 4s ease}
+.va-fotos img.ancha{object-fit:contain;background:#EDE7DD}
 .va-fotos img.on{opacity:1;transform:scale(1)}
 .va-cap{position:absolute;left:16px;top:16px;background:rgba(255,253,249,.95);color:var(--tinta);padding:.45rem .95rem;border-radius:999px;font-size:.85rem;font-weight:700;box-shadow:0 6px 16px -6px rgba(0,0,0,.3)}
 .vista-arma .letras{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);display:flex;gap:5px;flex-wrap:wrap;justify-content:center;width:max-content;max-width:94%;padding:10px 14px;background:#fff;border-radius:14px;box-shadow:0 14px 30px -12px rgba(10,40,60,.5)}
@@ -1418,13 +1419,14 @@ const fotosArma = {
   'Pareja': [['esc-pareja-blanca-anillos.jpg', 'Manos de pareja'], ['esc-pareja-dorada.jpg', 'Manos de pareja, en dorado']],
   'Familia': [['esc-familia-oro.jpg', 'Familia: 2 adultos y bebé'], ['familia-7-manos-v2.jpg', 'Toda la familia']],
   'Mascota': [['masc-sora.jpg', 'Su patita, con nombre'], ['masc-chica-bulldog.jpg', 'Su patita y tu mano']],
-  acabado: [['colores.jpg', 'Bronce, cobre, blanco y dorados']],
+  acabado: [['colores-v2.jpg', 'Bronce, oro antiguo, cobre rosado, blanco, dorado y champagne']],
   nombre: [['alfabeto.jpg', 'Dos estilos de letras en yeso']]
 };
 const vaImgs = {};
 Object.values(fotosArma).flat().forEach(([f, cap]) => {
   const img = document.createElement('img');
   img.src = 'img/cat/' + f; img.alt = cap; img.loading = 'lazy';
+  img.onload = () => img.classList.toggle('ancha', img.naturalWidth > img.naturalHeight * 1.2);
   vaFotos.appendChild(img); vaImgs[f] = img;
 });
 let vaLista = [], vaI = 0, vaTimer = null;
