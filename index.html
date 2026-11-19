@@ -524,6 +524,7 @@ header>*{pointer-events:auto}
 .resumen span{display:block;font-size:.92rem;opacity:.9;margin-top:3px}
 .res-precio{text-align:right;flex:none}
 .res-precio b{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.campo .ayuda{display:block;font-size:.88rem;opacity:.85;margin-top:8px;line-height:1.4}
 .nota-arma{font-size:.9rem;opacity:.85;margin-top:14px;max-width:44ch}
 @media(max-width:820px){.arma-grid{grid-template-columns:1fr}.arma-grid{gap:0}.arma-grid>div:first-child{display:contents}.form-arma{order:1}.vista-arma{position:relative;top:0}.vista-arma{margin:0 6px 44px}.va-fotos{aspect-ratio:1/1}.vista-arma .letras span{width:24px;height:31px;font-size:1rem}}
 
@@ -1103,6 +1104,7 @@ header>*{pointer-events:auto}
         <div class="campo"><span><i class="nro"></i>¿Cuándo te queda bien?</span>
           <div class="chips" data-campo="cuando"></div></div>
         <div class="campo"><span><i class="nro"></i>Tu nombre <em>(opcional)</em></span><input id="cliente" class="chico" maxlength="40" placeholder="Para saber con quién hablamos" autocomplete="given-name"></div>
+        <div class="campo" id="c-tel" hidden><span><i class="nro"></i>Tu WhatsApp <em>(opcional)</em></span><input id="tel" class="chico" type="tel" inputmode="tel" maxlength="20" placeholder="09X XXX XXX" autocomplete="tel"><small class="ayuda">Si no llegás a enviar el pedido, Tathiana te escribe para ayudarte. Solo lo usamos para eso.</small></div>
         <div class="resumen" id="resumen" aria-live="polite"><div><small>Tu pedido</small><b id="res-tit"></b><span id="res-det"></span></div><div class="res-precio"><small>Precio</small><b id="res-precio"></b><span id="res-extra"></span></div></div>
         <a id="enviar" class="btn btn-negro" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Enviar mi pedido por WhatsApp</a>
         <p class="nota-arma">Te llega a WhatsApp con todo lo que elegiste. El diseño final lo terminás de definir el día de la toma.</p>
@@ -1651,6 +1653,28 @@ function armar() {
     + `\n\n💲 Precio en la web: ${$p(r.precio)}${r.extra ? ' (' + r.extra + ')' : ''}\n\n¿Me confirmás disponibilidad?`;
   enviar.href = WA + encodeURIComponent(msg);
 }
+/* pedidos sin terminar: si deja su WhatsApp, el pedido se guarda en la planilla de Tathiana (Google Sheets) aunque no lo envíe */
+const LEADS_URL = '';
+const telIn = document.getElementById('tel');
+document.getElementById('c-tel').hidden = !LEADS_URL;
+const leadId = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const telOk = () => { const d = telIn.value.replace(/\D/g, ''); return /^0?9\d{7}$/.test(d) || /^5989\d{7}$/.test(d) || (d.length >= 10 && d.length <= 15 && !d.startsWith('0')); };
+let leadTimer = null, leadUltimo = '';
+function guardarLead(estado) {
+  if (!LEADS_URL || !telOk()) return;
+  const r = pedido();
+  const datos = { id: leadId, estado, nombre: cliente.value.trim(), tel: telIn.value.trim(), titulo: r.tit, pedido: r.lineas.join(' | '), precio: r.precio };
+  const cuerpo = JSON.stringify(datos);
+  if (cuerpo === leadUltimo) return; leadUltimo = cuerpo;
+  try { fetch(LEADS_URL, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain' }, body: cuerpo }); } catch (e) {}
+  if (estado === 'pendiente' && !guardarLead.contado) { guardarLead.contado = true; contar('arma-dejo-whatsapp', 'Creá el tuyo: dejó su WhatsApp'); }
+}
+const leadPronto = () => { clearTimeout(leadTimer); leadTimer = setTimeout(() => guardarLead('pendiente'), 2500); };
+let leadEnviado = false;
+document.getElementById('form-arma').addEventListener('input', () => { if (!leadEnviado) leadPronto(); });
+document.getElementById('form-arma').addEventListener('click', e => { if (e.target.closest('button[data-campo]') && !leadEnviado) leadPronto(); });
+telIn.addEventListener('blur', () => { if (!leadEnviado) guardarLead('pendiente'); });
+addEventListener('visibilitychange', () => { if (document.hidden && !leadEnviado) guardarLead('pendiente'); });
 let armaTocado = false;
 document.getElementById('form-arma').addEventListener('click', e => {
   const b = e.target.closest('button[data-campo]'); if (!b || b.disabled) return;
@@ -1667,7 +1691,7 @@ document.getElementById('form-arma').addEventListener('click', e => {
 document.getElementById('form-arma').addEventListener('input', armar);
 nombre.addEventListener('focus', () => mostrar(ARMA.foto.nombre));
 nombre.addEventListener('blur', () => mostrar(fotoProd()));
-enviar.addEventListener('click', () => { const r = pedido(); contar('arma-whatsapp', 'Creá el tuyo: envió pedido'); contar('arma-whatsapp-' + est.prod, 'Pedido: ' + r.tit); });
+enviar.addEventListener('click', () => { clearTimeout(leadTimer); leadEnviado = true; guardarLead('enviado'); const r = pedido(); contar('arma-whatsapp', 'Creá el tuyo: envió pedido'); contar('arma-whatsapp-' + est.prod, 'Pedido: ' + r.tit); });
 pintarOpc(); mostrar(fotoProd()); armar();
 
 /* contadores */

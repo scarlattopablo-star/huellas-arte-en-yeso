@@ -27,6 +27,7 @@ button{font:inherit;font-weight:600;font-size:1rem;padding:14px 20px;border-radi
 .error{color:#B3412F;font-weight:600;min-height:1.4em}
 .herr{display:grid;gap:12px}
 .herr a{display:flex;align-items:center;gap:16px;padding:18px;border-radius:16px;background:#fff;border:1.5px solid var(--borde);color:inherit;text-decoration:none}
+.herr a[hidden]{display:none}
 .herr a:hover{border-color:var(--oro)}
 .herr i{font-style:normal;font-size:1.8rem}
 .herr b{display:block;font-size:1.1rem}
@@ -51,16 +52,19 @@ button{font:inherit;font-weight:600;font-size:1rem;padding:14px 20px;border-radi
     <p>Herramientas para el día a día.</p>
     <div class="herr">
       <a href="giftcard.html"><i>🎁</i><span><b>Gift Card</b><small>Completar, descargar, compartir o imprimir</small></span></a>
+      <a href="#" id="hoja-pedidos" target="_blank" rel="noopener" hidden><i>📋</i><span><b>Pedidos sin terminar</b><small>Quienes dejaron su WhatsApp en Creá el tuyo</small></span></a>
       <a href="metricas.html"><i>📊</i><span><b>Métricas de la web</b><small>Visitas, pedidos armados y carritos perdidos</small></span></a>
     </div>
     <button class="salir" id="salir" type="button">Cerrar sesión</button>
   </section>
 </main>
 <script>
+const HOJA_PEDIDOS = ''; /* link de la planilla de Google con los pedidos sin terminar */
 const CLAVE = '300cbc4d5872a050a5c87dd7869292d012878a67f3cf8226b81cef21f2d9207f';
 const leer = () => { try { return localStorage.getItem('huellas-admin') === '1'; } catch (e) { return false; } };
 const guardar = v => { try { v ? localStorage.setItem('huellas-admin', '1') : localStorage.removeItem('huellas-admin'); } catch (e) {} };
 function mostrar() {
+  const hp = document.getElementById('hoja-pedidos'); if (HOJA_PEDIDOS) { hp.href = HOJA_PEDIDOS; hp.hidden = false; }
   document.getElementById('login').hidden = true; document.getElementById('panel').hidden = false;
   const ir = new URLSearchParams(location.search).get('ir');
   if (ir === 'giftcard') location.replace('giftcard.html');

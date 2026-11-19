@@ -52,7 +52,7 @@ h2{font-size:1.15rem;font-weight:700;margin:34px 0 12px}
     <div class="kpi"><small>Visitantes</small><b data-p="TOTAL">–</b><span>en total</span></div>
     <div class="kpi"><small>Abrieron WhatsApp</small><b id="k-wa">–</b><span>desde cualquier botón</span></div>
     <div class="kpi bien"><small>Pedidos armados</small><b data-p="arma-whatsapp">–</b><span>enviados desde Creá el tuyo</span></div>
-    <div class="kpi alerta"><small>Carritos perdidos</small><b id="k-perdidos">–</b><span>empezaron a armar y no enviaron</span></div>
+    <div class="kpi alerta"><small>Carritos perdidos</small><b id="k-perdidos">–</b><span>empezaron a armar y no enviaron (los que dejaron su WhatsApp están en «Pedidos sin terminar»)</span></div>
   </div>
 
   <h2>Creá el tuyo: de la visita al pedido</h2>
@@ -73,7 +73,7 @@ h2{font-size:1.15rem;font-weight:700;margin:34px 0 12px}
 <script>
 const BASE = 'https://huellasyeso.goatcounter.com/counter/';
 const GRUPOS = {
-  embudo: [['/arma', 'Entraron a Creá el tuyo'], ['arma-empezo', 'Empezaron a elegir'], ['arma-whatsapp', 'Enviaron el pedido']],
+  embudo: [['/arma', 'Entraron a Creá el tuyo'], ['arma-empezo', 'Empezaron a elegir'], ['arma-dejo-whatsapp', 'Dejaron su WhatsApp'], ['arma-whatsapp', 'Enviaron el pedido']],
   productos: [['arma-whatsapp-cuadro', 'Cuadro bebé o niño'], ['arma-whatsapp-hermanos', 'Cuadro hermanos'], ['arma-whatsapp-escultura', 'Escultura 3D'], ['arma-whatsapp-mascota', 'Mascota'], ['arma-whatsapp-box', 'Huella Box']],
   secciones: [['/inicio', 'Inicio'], ['/cuadros', 'Cuadros y precios'], ['/esculturas', 'Esculturas'], ['/trabajos', 'Nuestras creaciones'], ['/como', 'Cómo lo hacemos'], ['/arma', 'Creá el tuyo'], ['/taller', 'Nuestro taller'], ['/tathiana', 'Detrás de Huellas']],
   botones: [['arma-whatsapp', 'WhatsApp · Creá el tuyo'], ['whatsapp-cuadros', 'WhatsApp · Cuadros'], ['whatsapp-esculturas', 'WhatsApp · Esculturas y mascotas'], ['whatsapp-inicio', 'WhatsApp · Inicio y Gift Card'], ['whatsapp-flotante', 'WhatsApp · botón flotante'], ['whatsapp-trabajos', 'WhatsApp · Creaciones'], ['whatsapp-como', 'WhatsApp · Cómo lo hacemos'], ['instagram', 'Instagram']]
