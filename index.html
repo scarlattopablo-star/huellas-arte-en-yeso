@@ -1654,7 +1654,7 @@ function armar() {
   enviar.href = WA + encodeURIComponent(msg);
 }
 /* pedidos sin terminar: si deja su WhatsApp, el pedido se guarda en la planilla de Tathiana (Google Sheets) aunque no lo envíe */
-const LEADS_URL = '';
+const LEADS_URL = 'https://script.google.com/macros/s/AKfycbzV4MBZMbZg52SRHu5JF1D6rqS5ZSYQy_ji0E3T3UqBrGjKE291katktw1gJZ23rxPhwA/exec';
 const telIn = document.getElementById('tel');
 document.getElementById('c-tel').hidden = !LEADS_URL;
 const leadId = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);

@@ -59,7 +59,7 @@ button{font:inherit;font-weight:600;font-size:1rem;padding:14px 20px;border-radi
   </section>
 </main>
 <script>
-const HOJA_PEDIDOS = ''; /* link de la planilla de Google con los pedidos sin terminar */
+const HOJA_PEDIDOS = 'https://docs.google.com/spreadsheets/d/1vlj9bt13hXuxbCdQKUxoF9ZB6h-7qLXO9-TgkOehkNk/edit'; /* link de la planilla de Google con los pedidos sin terminar */
 const CLAVE = '300cbc4d5872a050a5c87dd7869292d012878a67f3cf8226b81cef21f2d9207f';
 const leer = () => { try { return localStorage.getItem('huellas-admin') === '1'; } catch (e) { return false; } };
 const guardar = v => { try { v ? localStorage.setItem('huellas-admin', '1') : localStorage.removeItem('huellas-admin'); } catch (e) {} };
