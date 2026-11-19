@@ -67,11 +67,12 @@ h2{font-size:1.15rem;font-weight:700;margin:34px 0 12px}
   <h2>Botones de WhatsApp e Instagram</h2>
   <div class="caja wa" id="botones"></div>
 
-  <p class="nota">Las cifras son personas distintas (no clics repetidos) desde que se activó el contador y se actualizan cada pocas horas. El detalle por día, celular o computadora, país y de dónde llegan (Instagram, Google…) está en GoatCounter.</p>
+  <p class="nota">Las cifras son personas distintas (no clics repetidos) desde que se activó el contador, el 19 de noviembre de 2026. Las visitas desde un celular o compu donde se abrió el admin no se cuentan. El detalle por día, celular o computadora, país y de dónde llegan (Instagram, Google…) está en GoatCounter.</p>
   <a class="btn" href="https://huellasyeso.goatcounter.com" target="_blank" rel="noopener">Ver todo en GoatCounter →</a>
 </main>
 <script>
 const BASE = 'https://huellasyeso.goatcounter.com/counter/';
+const DESDE = '2026-11-19'; /* día en que se activó el contador */
 const GRUPOS = {
   embudo: [['/arma', 'Entraron a Creá el tuyo'], ['arma-empezo', 'Empezaron a elegir'], ['arma-dejo-whatsapp', 'Dejaron su WhatsApp'], ['arma-whatsapp', 'Enviaron el pedido']],
   productos: [['arma-whatsapp-cuadro', 'Cuadro bebé o niño'], ['arma-whatsapp-hermanos', 'Cuadro hermanos'], ['arma-whatsapp-escultura', 'Escultura 3D'], ['arma-whatsapp-mascota', 'Mascota'], ['arma-whatsapp-box', 'Huella Box']],
@@ -81,7 +82,8 @@ const GRUPOS = {
 const num = t => +String(t || '0').replace(/\D/g, '') || 0;
 async function leer(path) {
   try {
-    const r = await fetch(BASE + encodeURIComponent(path) + '.json', { cache: 'no-store' });
+    /* con start= GoatCounter devuelve el dato al día; sin eso entrega una copia guardada de hasta 4 horas */
+    const r = await fetch(BASE + encodeURIComponent(path) + '.json?start=' + DESDE, { cache: 'no-store' });
     if (!r.ok) return 0;
     return num((await r.json()).count);
   } catch (e) { return 0; }
