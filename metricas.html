@@ -35,7 +35,8 @@ h2{font-size:1.15rem;font-weight:700;margin:34px 0 12px}
 .embudo .barra i{background:var(--oro)}
 .wa .barra i{background:#25D366}
 .aviso{background:#FFF6E3;border:1.5px solid #EBCB86;border-radius:14px;padding:14px 16px;line-height:1.45;margin-bottom:8px}
-.aviso[hidden]{display:none}
+.aviso[hidden],.cargando[hidden]{display:none}
+.cargando{color:var(--tinta-2);font-weight:600;margin:-12px 0 20px}
 .nota{font-size:.9rem;color:var(--tinta-2);line-height:1.5;margin-top:12px}
 .btn{display:inline-block;margin-top:24px;font-weight:700;padding:14px 22px;border-radius:999px;background:var(--tinta);color:var(--yeso);text-decoration:none}
 @media(max-width:520px){.fila{grid-template-columns:1fr auto}.fila .barra{grid-column:1/-1;grid-row:2}}
@@ -46,6 +47,7 @@ h2{font-size:1.15rem;font-weight:700;margin:34px 0 12px}
   <div class="top"><a href="admin.html">← Panel</a><a href="#" id="recargar">↻ Actualizar</a></div>
   <h1>Métricas de la web</h1>
   <p class="sub">Personas que visitaron cada parte de huellasyeso.uy y qué tocaron. Tus propias visitas (con el admin abierto) no se cuentan.</p>
+  <p class="cargando" id="cargando">⏳ Cargando los datos… puede tardar unos segundos.</p>
   <div class="aviso" id="aviso" hidden>Todavía no hay datos. Si recién se activó el contador, las cifras aparecen en unas horas. Si no se activó, falta crear la cuenta de GoatCounter con el código <b>huellasyeso</b> y prender «Allow adding visitor counts on your website».</div>
 
   <div class="kpis">
@@ -93,6 +95,7 @@ function pintar(id, filas, v) {
   document.getElementById(id).innerHTML = filas.map(([p, t]) => `<div class="fila"><span>${t}</span><div class="barra"><i style="width:${v[p] / max * 100}%"></i></div><b>${v[p]}</b></div>`).join('');
 }
 async function cargar() {
+  document.getElementById('cargando').hidden = false;
   const paths = new Set(['TOTAL', ...Object.values(GRUPOS).flat().map(x => x[0])]);
   const v = {};
   await Promise.all([...paths].map(async p => v[p] = await leer(p)));
@@ -102,6 +105,7 @@ async function cargar() {
   document.getElementById('k-perdidos').textContent = Math.max(0, v['arma-empezo'] - v['arma-whatsapp']);
   Object.entries(GRUPOS).forEach(([id, f]) => pintar(id, f, v));
   document.getElementById('aviso').hidden = Object.values(v).some(Boolean);
+  document.getElementById('cargando').hidden = true;
 }
 document.getElementById('recargar').onclick = e => { e.preventDefault(); cargar(); };
 cargar();
