@@ -500,7 +500,7 @@ header>*{pointer-events:auto}
 .btn-wa{background:var(--wa);color:#063b1b}
 .vista-arma{position:relative;margin:0;transform:rotate(2deg);transition:transform .5s}
 .vista-arma:hover{transform:rotate(0) scale(1.02)}
-.va-fotos{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:#F4F1EB;box-shadow:0 50px 80px -30px rgba(10,40,60,.6)}
+.va-fotos{position:relative;aspect-ratio:3/4;border-radius:22px;overflow:hidden;background:#F4F1EB;box-shadow:0 50px 80px -30px rgba(10,40,60,.6)}
 .va-fotos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity .6s ease,transform 4s ease}
 .va-fotos img.ancha{object-fit:contain;background:#EDE7DD}
 .va-fotos img.on{opacity:1;transform:scale(1)}
@@ -526,7 +526,7 @@ header>*{pointer-events:auto}
 .res-precio b{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .campo .ayuda{display:block;font-size:.88rem;opacity:.85;margin-top:8px;line-height:1.4}
 .nota-arma{font-size:.9rem;opacity:.85;margin-top:14px;max-width:44ch}
-@media(max-width:820px){.arma-grid{grid-template-columns:1fr}.arma-grid{gap:0}.arma-grid>div:first-child{display:contents}.form-arma{order:1}.vista-arma{position:relative;top:0}.vista-arma{margin:0 6px 44px}.va-fotos{aspect-ratio:1/1}.vista-arma .letras span{width:24px;height:31px;font-size:1rem}}
+@media(max-width:820px){.arma-grid{grid-template-columns:1fr}.arma-grid{gap:0}.arma-grid>div:first-child{display:contents}.form-arma{order:1}.vista-arma{position:relative;top:0}.vista-arma{margin:0 6px 44px}.va-fotos{aspect-ratio:3/4}.vista-arma .letras span{width:24px;height:31px;font-size:1rem}}
 
 /* ---------- gift card ---------- */
 .regalo{background:var(--tinta);color:var(--yeso);padding:120px 0;position:relative;overflow:hidden}
@@ -1520,7 +1520,7 @@ const ARMA = {
   donde: { normal: ['Salón en Punta Carretas', 'A domicilio (Montevideo)', 'Maldonado'], box: ['Retiro en Punta Carretas', 'Envío a domicilio'] },
   cuando: ['Lo antes posible', 'Esta semana', 'Próxima semana', 'Más adelante'],
   foto: {
-    cuadro: [[['augusto.jpg', '1 pieza'], ['juana.jpg', '1 pieza, 7 a 9 años']], [['paulina.jpg?v=2', '2 piezas'], ['joaquin.jpg', '2 piezas'], ['milu-cobre.jpg', '2 piezas, en cobre']], [['pauli.jpg?v=2', '2 piezas + foto'], ['mateo.jpg', '2 piezas + foto'], ['mia.jpg?v=2', '2 piezas + foto']], [['francisco.jpg', '4 piezas + foto'], ['francesca-bebe.jpg', '4 piezas + foto'], ['mateo-4.jpg', '4 piezas + foto']]],
+    cuadro: [[['cuadro-paulina.jpg', 'Paulina · 2 piezas'], ['cuadro-francisco.jpg', 'Francisco · en blanco'], ['cuadro-faustino.jpg', 'Faustino · 4 piezas + foto'], ['cuadro-francesca.jpg', 'Francesca · 4 piezas + 2 fotos']], [['cuadro-paulina.jpg', 'Paulina · 2 piezas'], ['cuadro-faustino.jpg', 'Faustino · 4 piezas + foto'], ['cuadro-francisco.jpg', 'Francisco · en blanco'], ['cuadro-francesca.jpg', 'Francesca · 4 piezas + 2 fotos']], [['cuadro-faustino.jpg', 'Faustino · 4 piezas + foto'], ['cuadro-francisco.jpg', 'Francisco · en blanco'], ['cuadro-francesca.jpg', 'Francesca · 4 piezas + 2 fotos'], ['cuadro-paulina.jpg', 'Paulina · 2 piezas']], [['cuadro-francesca.jpg', 'Francesca · 4 piezas + 2 fotos'], ['cuadro-faustino.jpg', 'Faustino · 4 piezas + foto'], ['cuadro-francisco.jpg', 'Francisco · en blanco'], ['cuadro-paulina.jpg', 'Paulina · 2 piezas']]],
     hermanos: [['hermanos-blanco.jpg', 'Cuadro para hermanos'], ['martino-piero.jpg', 'Cuadro para hermanos'], ['zoe-teo.jpg', 'Cuadro para hermanos']],
     escultura: [[['esc-bebe-2punos.jpg', '2 piezas de bebé'], ['esc-bebe-mano-pie.jpg', '2 piezas de bebé']], [['esc-adulto-bebe-puno.jpg', 'Mano adulto + mano bebé'], ['esc-adulto-bebe-blanco2.jpg', 'Mano adulto + mano bebé']], [['esc-nino-2manos-oro.jpg', '2 manos de niño']], [['esc-nino-oro1.jpg', 'Mano adulto + mano niño'], ['esc-nino-oro2.jpg', 'Mano adulto + mano niño']], [['esc-pareja-blanca-anillos.jpg', '2 manos adultas'], ['esc-pareja-dorada.jpg', '2 manos adultas']], [['esc-familia-oro.jpg', '2 adultos y bebé'], ['esc-familia-oro2.jpg', '2 adultos y bebé']], [['esc-2adultos-nino.jpg', '2 adultos y niño']], [['esc-adulto-nino.jpg', '3 manos, +13 años']]],
     mascota: [['masc-sora.jpg', 'Su patita, con nombre'], ['masc-marco-negro.jpg', 'Cuadro con patitas'], ['masc-chica-bulldog.jpg', 'Cubo: su patita y tu mano']],
