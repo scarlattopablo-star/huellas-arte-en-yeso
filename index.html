@@ -1068,7 +1068,7 @@ header>*{pointer-events:auto}
     <h2 class="sube">Preguntas<br><span class="serif">frecuentes</span></h2>
     <details><summary>¿Dónde se hace la sesión? <i>+</i></summary><p>En nuestro salón de Punta Carretas, o vamos a tu casa si estás en una zona cercana (con costo adicional). También trabajamos en Maldonado.</p></details>
     <details><summary>¿Hacen huellas de mascotas? <i>+</i></summary><p>¡Sí! Cuadro con su patita, nombre y accesorio desde $3.450, o el cubo con su patita y tu mano desde $6.300. <a href="#mascotas" style="text-decoration:underline">Ver todos los precios</a>.</p></details>
-    <details><summary>¿Qué terminaciones hay? <i>+</i></summary><p>Blanco yeso natural, dorado y bronce. Podés sumar su nombre en letras y una foto dentro del cuadro.</p></details>
+    <details><summary>¿Qué terminaciones hay? <i>+</i></summary><p>Rosa gold, blanco y dorado. Podés sumar su nombre en letras y una foto dentro del cuadro.</p></details>
     <details><summary>¿Cuánto cuesta? <i>+</i></summary><p>Desde $3.450 una pieza para bebés de 0 a 11 meses. El precio depende de la edad y de cuántas piezas lleva el cuadro: <a href="#precios" style="text-decoration:underline">mirá el catálogo completo</a>. El cuadro para hermanos tiene precio único de $5.590 y las esculturas de manos en familia van desde $4.500.</p></details>
     <details><summary>¿Pueden hacer la mano con un objeto? <i>+</i></summary><p>Sí: una tijera, un micrófono o lo que represente tu oficio o tu pasión. Escribinos por WhatsApp y te pasamos el precio.</p></details>
     <details><summary>¿Y si vivo lejos del salón? <i>+</i></summary><p>Tenés la Huella Box: incluye todo para hacer las huellas en casa y rinde hasta 4 piezas de bebé ($3.550). Si querés, te mandamos también el marco con el nombre pronto por $700 más.</p></details>
@@ -1098,7 +1098,7 @@ header>*{pointer-events:auto}
         <div id="opc"></div>
         <div class="campo" id="c-acab"><span><i class="nro"></i>Terminación</span>
           <div class="chips" data-campo="acab"></div></div>
-        <div class="campo" id="c-nombre"><span><i class="nro"></i><b id="lbl-nombre">Nombre</b> <em>(opcional)</em></span><input id="nombre" maxlength="12" placeholder="Escribilo acá" autocomplete="off"></div>
+        <div class="campo" id="c-nombre"><span><i class="nro"></i><b id="lbl-nombre">Nombre</b></span><input id="nombre" maxlength="12" placeholder="Escribilo acá" autocomplete="off"></div>
         <div class="campo" id="c-donde"><span><i class="nro"></i>¿Dónde?</span>
           <div class="chips" data-campo="donde"></div></div>
         <div class="campo"><span><i class="nro"></i>¿Cuándo te queda bien?</span>
@@ -1107,7 +1107,7 @@ header>*{pointer-events:auto}
         <div class="campo" id="c-tel" hidden><span><i class="nro"></i>Tu WhatsApp <em>(opcional)</em></span><input id="tel" class="chico" type="tel" inputmode="tel" maxlength="20" placeholder="09X XXX XXX" autocomplete="tel"><small class="ayuda">Si no llegás a enviar el pedido, Tathiana te escribe para ayudarte. Solo lo usamos para eso.</small></div>
         <div class="resumen" id="resumen" aria-live="polite"><div><small>Tu pedido</small><b id="res-tit"></b><span id="res-det"></span></div><div class="res-precio"><small>Precio</small><b id="res-precio"></b><span id="res-extra"></span></div></div>
         <a id="enviar" class="btn btn-negro" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Enviar mi pedido por WhatsApp</a>
-        <p class="nota-arma">Te llega a WhatsApp con todo lo que elegiste. El diseño final lo terminás de definir el día de la toma.</p>
+        <p class="nota-arma">Te llega a WhatsApp con todo lo que elegiste. El diseño final lo terminás de definir el día de la toma de impresión.</p>
       </div>
     </div>
     <figure class="vista-arma" id="vista-arma">
@@ -1506,8 +1506,8 @@ const ARMA = {
   piezas: i => [
     { t: '1 pieza', s: i === 3 ? 'una mano' : 'manito o piecito' },
     { t: '2 piezas', s: 'manos, pies o combinado' },
-    { t: '2 piezas + foto', s: 'marco 45×30' },
-    { t: i < 2 ? '4 piezas + foto' : '4 piezas + fotos', s: 'marco 47×37', solo: i < 2 }
+    { t: '2 piezas + foto', s: '' },
+    { t: i < 2 ? '4 piezas + foto' : '4 piezas + fotos', s: '', solo: i < 2 }
   ],
   huellas: ['Manos', 'Pies', 'Manos y pies'],
   esc: [
@@ -1516,7 +1516,7 @@ const ARMA = {
     ['Familia', '2 adultos y bebé', 6500], ['Familia', '2 adultos y niño', 6990], ['Familia', '3 manos, +13 años', 7500]
   ],
   hermanos: ['2 hermanos', '3 hermanos', '4 o más'],
-  acab: [['Dorado', '#C9A25A'], ['Oro antiguo', '#A8843F'], ['Champagne', '#E3CFA6'], ['Bronce', '#A2643C'], ['Cobre rosado', '#C98A6E'], ['Blanco', '#E9E4DA']],
+  acab: [['Rosa gold', '#D9A08B'], ['Blanco', '#E9E4DA'], ['Dorado', '#C9A25A']],
   donde: { normal: ['Salón en Punta Carretas', 'A domicilio (Montevideo)', 'Maldonado'], box: ['Retiro en Punta Carretas', 'Envío a domicilio'] },
   cuando: ['Lo antes posible', 'Esta semana', 'Próxima semana', 'Más adelante'],
   foto: {
@@ -1525,7 +1525,7 @@ const ARMA = {
     escultura: [[['esc-bebe-2punos.jpg', '2 piezas de bebé'], ['esc-bebe-mano-pie.jpg', '2 piezas de bebé']], [['esc-adulto-bebe-puno.jpg', 'Mano adulto + mano bebé'], ['esc-adulto-bebe-blanco2.jpg', 'Mano adulto + mano bebé']], [['esc-nino-2manos-oro.jpg', '2 manos de niño']], [['esc-nino-oro1.jpg', 'Mano adulto + mano niño'], ['esc-nino-oro2.jpg', 'Mano adulto + mano niño']], [['esc-pareja-blanca-anillos.jpg', '2 manos adultas'], ['esc-pareja-dorada.jpg', '2 manos adultas']], [['esc-familia-oro.jpg', '2 adultos y bebé'], ['esc-familia-oro2.jpg', '2 adultos y bebé']], [['esc-2adultos-nino.jpg', '2 adultos y niño']], [['esc-adulto-nino.jpg', '3 manos, +13 años']]],
     mascota: [['masc-sora.jpg', 'Su patita, con nombre'], ['masc-marco-negro.jpg', 'Cuadro con patitas'], ['masc-chica-bulldog.jpg', 'Cubo: su patita y tu mano']],
     box: [['punitos-blanco.jpg', 'Huellas hechas en casa']],
-    acab: [['colores-v2.jpg', 'Bronce, oro antiguo, cobre rosado, blanco, dorado y champagne']],
+    acab: [['colores-v2.jpg', 'Terminaciones en yeso']],
     nombre: [['alfabeto.jpg', 'Dos estilos de letras en yeso']]
   }
 };
@@ -1533,7 +1533,7 @@ const est = { prod: 'cuadro', edad: 0, piezas: 1, huellas: 2, esc: 1, herm: 0, m
 const nombre = document.getElementById('nombre'), cliente = document.getElementById('cliente'), letras = document.getElementById('letras'), enviar = document.getElementById('enviar');
 const vaFotos = document.getElementById('va-fotos'), vaCap = document.getElementById('va-cap'), opc = document.getElementById('opc');
 const $p = n => '$' + fmtP.format(n);
-const grad = { Dorado: 'var(--oro-grad)', 'Oro antiguo': 'linear-gradient(120deg,#D9BC7A,#A8843F 50%,#6F5521)', Champagne: 'linear-gradient(120deg,#F6EAD0,#E3CFA6 50%,#B9A074)', Bronce: 'linear-gradient(120deg,#E0A579,#A2643C 50%,#6E3B20)', 'Cobre rosado': 'linear-gradient(120deg,#F2C4AE,#C98A6E 50%,#8E5640)', Blanco: '#F1EDE5' };
+const grad = { Dorado: 'var(--oro-grad)', 'Rosa gold': 'linear-gradient(120deg,#F6D3C4,#D9A08B 45%,#A8695A 75%,#F0C2B0)', Blanco: '#F1EDE5' };
 function chips(campo, lista, sel) {
   return lista.map((o, i) => { const [t, s, dis] = Array.isArray(o) ? o : [o];
     return `<button type="button" data-campo="${campo}" data-i="${i}" aria-pressed="${i === sel}"${dis ? ' disabled' : ''}>${t}${s ? `<small>${s}</small>` : ''}</button>`; }).join('');
@@ -1546,7 +1546,7 @@ function pedido() {
     const pz = ARMA.piezas(e.edad)[e.piezas];
     r.tit = 'Cuadro ' + pz.t; r.precio = CAT.precios[e.edad][e.piezas];
     r.det = CAT.edades[e.edad] + ' · ' + (e.piezas === 0 ? (e.huellas === 1 ? 'piecito' : 'manito') : ARMA.huellas[e.huellas].toLowerCase());
-    r.lineas = ['🖼 Cuadro: ' + pz.t + (pz.s.startsWith('marco') ? ` (${pz.s})` : ''), '👶 Edad: ' + CAT.edades[e.edad], '✋ Huellas: ' + (e.piezas === 0 ? (e.huellas === 1 ? 'Piecito' : 'Manito') : ARMA.huellas[e.huellas])];
+    r.lineas = ['🖼 Cuadro: ' + pz.t, '👶 Edad: ' + CAT.edades[e.edad], '✋ Huellas: ' + (e.piezas === 0 ? (e.huellas === 1 ? 'Piecito' : 'Manito') : ARMA.huellas[e.huellas])];
   } else if (e.prod === 'hermanos') {
     r.tit = 'Cuadro para hermanos'; r.precio = 5590; r.det = ARMA.hermanos[e.herm] + ' · una manito de cada uno, foto y nombres';
     r.lineas = ['💕 Cuadro para hermanos (una manito de cada uno, foto y nombres)', '👧👦 Cantidad: ' + ARMA.hermanos[e.herm]];
@@ -1578,7 +1578,7 @@ function pintarOpc() {
     if (e.piezas === 3 && e.edad >= 2) e.piezas = 2;
     if (e.piezas === 0 && e.huellas > 1) e.huellas = 0;
     h = campoH('¿Qué edad tiene?', 'edad', CAT.edades, e.edad)
-      + campoH('¿Cuántas piezas?', 'piezas', ARMA.piezas(e.edad).map((p, i) => [p.t, $p(CAT.precios[e.edad][i]) + ' · ' + p.s, p.solo === false]), e.piezas)
+      + campoH('¿Cuántas piezas?', 'piezas', ARMA.piezas(e.edad).map((p, i) => [p.t, $p(CAT.precios[e.edad][i]) + (p.s ? ' · ' + p.s : ''), p.solo === false]), e.piezas)
       + campoH('¿Qué huellas?', 'huellas', e.piezas === 0 ? ['Manito', 'Piecito'] : ARMA.huellas, e.huellas);
   } else if (e.prod === 'hermanos') {
     h = campoH('¿Cuántos hermanos?', 'herm', ARMA.hermanos, e.herm)
@@ -1641,7 +1641,7 @@ function armar() {
   }
   const ac = est.prod === 'box' ? 'Blanco' : ARMA.acab[est.acab][0];
   letras.style.setProperty('--acab', grad[ac]);
-  letras.querySelectorAll('span').forEach(s => s.style.color = ac === 'Blanco' || ac === 'Champagne' ? '#8a8378' : '#5b4520');
+  letras.querySelectorAll('span').forEach(s => s.style.color = ac === 'Blanco' ? '#8a8378' : ac === 'Rosa gold' ? '#6b3a2e' : '#5b4520');
   letras.hidden = est.prod === 'box' && !est.marco;
   const r = pedido();
   document.getElementById('res-tit').textContent = r.tit;
