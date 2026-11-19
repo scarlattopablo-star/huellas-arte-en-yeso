@@ -51,6 +51,7 @@ button{font:inherit;font-weight:600;font-size:1rem;padding:14px 20px;border-radi
     <p>Herramientas para el día a día.</p>
     <div class="herr">
       <a href="giftcard.html"><i>🎁</i><span><b>Gift Card</b><small>Completar, descargar, compartir o imprimir</small></span></a>
+      <a href="metricas.html"><i>📊</i><span><b>Métricas de la web</b><small>Visitas, pedidos armados y carritos perdidos</small></span></a>
     </div>
     <button class="salir" id="salir" type="button">Cerrar sesión</button>
   </section>
@@ -63,6 +64,7 @@ function mostrar() {
   document.getElementById('login').hidden = true; document.getElementById('panel').hidden = false;
   const ir = new URLSearchParams(location.search).get('ir');
   if (ir === 'giftcard') location.replace('giftcard.html');
+  if (ir === 'metricas') location.replace('metricas.html');
 }
 async function hash(t) {
   const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));

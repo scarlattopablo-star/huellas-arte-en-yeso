@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Métricas · Huellas</title>
+<link rel="icon" href="img/corazon-icono.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<script>try { if (localStorage.getItem('huellas-admin') !== '1') location.replace('admin.html?ir=metricas'); } catch (e) { location.replace('admin.html?ir=metricas'); }</script>
+<style>
+:root{--yeso:#F5F1EA;--tinta:#16222B;--tinta-2:#4A5A66;--oro:#C9A25A;--borde:#E2D8C6;--celeste:#5DB4D2;--verde:#2E9E5B;--rojo:#B3412F}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Bricolage Grotesque",system-ui,sans-serif;background:var(--yeso);color:var(--tinta);min-height:100svh;padding:32px 16px 60px;-webkit-font-smoothing:antialiased}
+main{max-width:860px;margin:0 auto}
+a{color:inherit}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+.top a{font-weight:600;text-decoration:none;color:var(--tinta-2)}
+h1{font-size:2.1rem;font-weight:800;letter-spacing:-.03em}
+.sub{color:var(--tinta-2);margin:6px 0 26px;line-height:1.45}
+h2{font-size:1.15rem;font-weight:700;margin:34px 0 12px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:#fff;border:1.5px solid var(--borde);border-radius:16px;padding:16px 18px}
+.kpi small{display:block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--tinta-2)}
+.kpi b{display:block;font-size:2.4rem;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums;margin-top:4px}
+.kpi span{font-size:.9rem;color:var(--tinta-2)}
+.kpi.alerta b{color:var(--rojo)}
+.kpi.bien b{color:var(--verde)}
+.caja{background:#fff;border:1.5px solid var(--borde);border-radius:16px;padding:8px 18px}
+.fila{display:grid;grid-template-columns:minmax(120px,1fr) 2fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #EFE8DC}
+.fila:last-child{border-bottom:0}
+.fila .barra{height:10px;border-radius:99px;background:#F1EBE0;overflow:hidden}
+.fila .barra i{display:block;height:100%;border-radius:99px;background:var(--celeste);width:0;transition:width .8s ease}
+.fila b{font-variant-numeric:tabular-nums;min-width:3ch;text-align:right}
+.embudo .barra i{background:var(--oro)}
+.wa .barra i{background:#25D366}
+.aviso{background:#FFF6E3;border:1.5px solid #EBCB86;border-radius:14px;padding:14px 16px;line-height:1.45;margin-bottom:8px}
+.aviso[hidden]{display:none}
+.nota{font-size:.9rem;color:var(--tinta-2);line-height:1.5;margin-top:12px}
+.btn{display:inline-block;margin-top:24px;font-weight:700;padding:14px 22px;border-radius:999px;background:var(--tinta);color:var(--yeso);text-decoration:none}
+@media(max-width:520px){.fila{grid-template-columns:1fr auto}.fila .barra{grid-column:1/-1;grid-row:2}}
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><a href="admin.html">← Panel</a><a href="#" id="recargar">↻ Actualizar</a></div>
+  <h1>Métricas de la web</h1>
+  <p class="sub">Personas que visitaron cada parte de huellasyeso.uy y qué tocaron. Tus propias visitas (con el admin abierto) no se cuentan.</p>
+  <div class="aviso" id="aviso" hidden>Todavía no hay datos. Si recién se activó el contador, las cifras aparecen en unas horas. Si no se activó, falta crear la cuenta de GoatCounter con el código <b>huellasyeso</b> y prender «Allow adding visitor counts on your website».</div>
+
+  <div class="kpis">
+    <div class="kpi"><small>Visitantes</small><b data-p="TOTAL">–</b><span>en total</span></div>
+    <div class="kpi"><small>Abrieron WhatsApp</small><b id="k-wa">–</b><span>desde cualquier botón</span></div>
+    <div class="kpi bien"><small>Pedidos armados</small><b data-p="arma-whatsapp">–</b><span>enviados desde Creá el tuyo</span></div>
+    <div class="kpi alerta"><small>Carritos perdidos</small><b id="k-perdidos">–</b><span>empezaron a armar y no enviaron</span></div>
+  </div>
+
+  <h2>Creá el tuyo: de la visita al pedido</h2>
+  <div class="caja embudo" id="embudo"></div>
+
+  <h2>Pedidos enviados, por producto</h2>
+  <div class="caja" id="productos"></div>
+
+  <h2>Visitantes por sección</h2>
+  <div class="caja" id="secciones"></div>
+
+  <h2>Botones de WhatsApp e Instagram</h2>
+  <div class="caja wa" id="botones"></div>
+
+  <p class="nota">Las cifras son personas distintas (no clics repetidos) desde que se activó el contador y se actualizan cada pocas horas. El detalle por día, celular o computadora, país y de dónde llegan (Instagram, Google…) está en GoatCounter.</p>
+  <a class="btn" href="https://huellasyeso.goatcounter.com" target="_blank" rel="noopener">Ver todo en GoatCounter →</a>
+</main>
+<script>
+const BASE = 'https://huellasyeso.goatcounter.com/counter/';
+const GRUPOS = {
+  embudo: [['/arma', 'Entraron a Creá el tuyo'], ['arma-empezo', 'Empezaron a elegir'], ['arma-whatsapp', 'Enviaron el pedido']],
+  productos: [['arma-whatsapp-cuadro', 'Cuadro bebé o niño'], ['arma-whatsapp-hermanos', 'Cuadro hermanos'], ['arma-whatsapp-escultura', 'Escultura 3D'], ['arma-whatsapp-mascota', 'Mascota'], ['arma-whatsapp-box', 'Huella Box']],
+  secciones: [['/inicio', 'Inicio'], ['/cuadros', 'Cuadros y precios'], ['/esculturas', 'Esculturas'], ['/trabajos', 'Nuestras creaciones'], ['/como', 'Cómo lo hacemos'], ['/arma', 'Creá el tuyo'], ['/taller', 'Nuestro taller'], ['/tathiana', 'Detrás de Huellas']],
+  botones: [['arma-whatsapp', 'WhatsApp · Creá el tuyo'], ['whatsapp-cuadros', 'WhatsApp · Cuadros'], ['whatsapp-esculturas', 'WhatsApp · Esculturas y mascotas'], ['whatsapp-inicio', 'WhatsApp · Inicio y Gift Card'], ['whatsapp-flotante', 'WhatsApp · botón flotante'], ['whatsapp-trabajos', 'WhatsApp · Creaciones'], ['whatsapp-como', 'WhatsApp · Cómo lo hacemos'], ['instagram', 'Instagram']]
+};
+const num = t => +String(t || '0').replace(/\D/g, '') || 0;
+async function leer(path) {
+  try {
+    const r = await fetch(BASE + encodeURIComponent(path) + '.json', { cache: 'no-store' });
+    if (!r.ok) return 0;
+    return num((await r.json()).count);
+  } catch (e) { return 0; }
+}
+function pintar(id, filas, v) {
+  const max = Math.max(1, ...filas.map(([p]) => v[p]));
+  document.getElementById(id).innerHTML = filas.map(([p, t]) => `<div class="fila"><span>${t}</span><div class="barra"><i style="width:${v[p] / max * 100}%"></i></div><b>${v[p]}</b></div>`).join('');
+}
+async function cargar() {
+  const paths = new Set(['TOTAL', ...Object.values(GRUPOS).flat().map(x => x[0])]);
+  const v = {};
+  await Promise.all([...paths].map(async p => v[p] = await leer(p)));
+  document.querySelectorAll('[data-p]').forEach(el => el.textContent = v[el.dataset.p]);
+  const wa = GRUPOS.botones.filter(([p]) => p !== 'instagram').reduce((s, [p]) => s + v[p], 0);
+  document.getElementById('k-wa').textContent = wa;
+  document.getElementById('k-perdidos').textContent = Math.max(0, v['arma-empezo'] - v['arma-whatsapp']);
+  Object.entries(GRUPOS).forEach(([id, f]) => pintar(id, f, v));
+  document.getElementById('aviso').hidden = Object.values(v).some(Boolean);
+}
+document.getElementById('recargar').onclick = e => { e.preventDefault(); cargar(); };
+cargar();
+</script>
+</body>
+</html>
